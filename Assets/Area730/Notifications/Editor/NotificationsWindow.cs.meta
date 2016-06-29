@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 0b2a512faec2d6845ab99880c3532da0
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - editorSkin: {fileID: 11400000, guid: 06410de5ad56c9942866fd85899339c9, type: 2}
+  - _dataHolder: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

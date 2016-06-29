@@ -1,0 +1,23 @@
+<!-- NOTE: Replace all 3 copies com.lastchance.planesio below with your full Android package name before building! -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.onesignal.onesignalsdk"
+    android:versionCode="1"
+    android:versionName="1.0" >
+    
+    !<!--- com.lastchance.planesio is your package id for ex. com.area730.mygamebundle
+    To find it go PlayerSettings -> Other Settings -> Bundle Identifier -->
+    
+    <permission android:name="com.lastchance.planesio.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="com.lastchance.planesio.permission.C2D_MESSAGE" />
+    <application>
+      <receiver
+            android:name="com.onesignal.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.lastchance.planesio" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

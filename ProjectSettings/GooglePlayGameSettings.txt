@@ -1,0 +1,10 @@
+lastUpgrade=00934
+proj.pluginVersion=0.9.34
+proj.AppId=679471750782
+and.BundleId=com.lastchance.planesio
+proj.classDir=Assets%2f_Scripts%2fGooglePlayServices
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0a%3c%21--%0aGoogle+Play+game+services+IDs.%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0a--%3e%0a%3cresources%3e%0a++%3cstring+name%3d%22app_id%22%3e679471750782%3c%2fstring%3e%0a++%3cstring+name%3d%22package_name%22%3ecom.lastchance.planesio%3c%2fstring%3e%0a++%3cstring+name%3d%22leaderboard_kings_of_wings%22%3eCgkI_rywneMTEAIQAQ%3c%2fstring%3e%0a++%3cstring+name%3d%22achievement_i_am_the_king%22%3eCgkI_rywneMTEAIQAg%3c%2fstring%3e%0a++%3cstring+name%3d%22achievement_dominator%22%3eCgkI_rywneMTEAIQBA%3c%2fstring%3e%0a++%3cstring+name%3d%22achievement_mega_killer%22%3eCgkI_rywneMTEAIQBQ%3c%2fstring%3e%0a++%3cstring+name%3d%22achievement_dogfight_veteran%22%3eCgkI_rywneMTEAIQBg%3c%2fstring%3e%0a++%3cstring+name%3d%22achievement_apprentice_pilot%22%3eCgkI_rywneMTEAIQAw%3c%2fstring%3e%0a++%3cstring+name%3d%22leaderboard_kings_of_wings%22%3eCgkI_rywneMTEAIQAQ%3c%2fstring%3e%0a%3c%2fresources%3e%0a
+and.ClientId=
+proj.requireGPlus=false
+android.SetupDone=true
