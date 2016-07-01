@@ -41,4 +41,6 @@ public static class Constants
     public const int STAYED_AS_KING_EXP = 20;
 
     public const int STRIKE_EXP = 100;
+
+    public const int RANDOM_GIFT_AMOUNT = 3;
 }

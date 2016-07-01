@@ -352,4 +352,24 @@ public static class Utilities
     {
         return DateTime.ParseExact(date, "yyyy-MM-dd", null);
     }
+
+    public static int[] RandomIntinAmount(int amount, int minNumber, int maxNumber)
+    {
+        R = new System.Random();
+        var randomArr = new int[amount];
+        for (int i = 0; i < amount; i++)
+        {
+            Debug.Log(randomArr[i]);
+
+            randomArr[i] = R.Next(minNumber, maxNumber);
+        }
+        return randomArr;
+    }
+
+    public static T GetRandomEnum<T>(int startIndex = 0, int endIndex = 0)
+    {
+        Array A = Enum.GetValues(typeof(T));
+        var V = (T)A.GetValue(UnityEngine.Random.Range(startIndex, A.Length - endIndex));
+        return V;
+    }
 }
