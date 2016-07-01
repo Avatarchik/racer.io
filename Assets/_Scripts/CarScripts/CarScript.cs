@@ -48,7 +48,8 @@ public class CarScript : MonoBehaviour
     public WeaponSystemController WeaponSystemController;
     public CarSoundController SoundController;
     public CarAI CarAI;
-    public TrailRenderer TrailRenderer;
+
+    public Transform TrailCarrier;
 
     public CarDangerZone DangerZone;
 
@@ -308,8 +309,6 @@ public class CarScript : MonoBehaviour
             InputController.ActivateInputController();
             AnalyticsManager.Instance.SessionStarted();
         }
-
-        TrailRenderer.gameObject.SetActive(false);
 
         EnteredWarningArea = false;
         EnteredAbandonArea = false;

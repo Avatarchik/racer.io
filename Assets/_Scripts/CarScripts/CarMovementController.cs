@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class CarMovementController : MonoBehaviour
 {
@@ -19,6 +20,21 @@ public class CarMovementController : MonoBehaviour
     bool _clampToMaxSpeed;
 
     IEnumerator _dashRoutine;
+
+    bool _isDrifting;
+
+    #region Event
+
+    public Action<bool> OnDriftActive;
+
+    void FireOnDriftActive(bool isActive)
+    {
+        if (OnDriftActive != null)
+            OnDriftActive(isActive);
+    }
+
+
+    #endregion
 
     public void ActivatePlayerMovement()
     {
@@ -322,11 +338,33 @@ public class CarMovementController : MonoBehaviour
         newRot += _torque * Time.fixedDeltaTime;
 
         if (Mathf.Abs(_torque) > 30.0f)
-        {
-
-        }
+            StartDrifting();
+        else
+            FinishDrifting();
 
         Rigidbody.MoveRotation(newRot);
+    }
+
+    void StartDrifting()
+    {
+        if (_isDrifting)
+            return;
+
+        SkidMarkManager.Instance.StartedDrifting(MyCar);
+
+        _isDrifting = true;
+        
+        FireOnDriftActive(true);
+    }
+
+    void FinishDrifting()
+    { 
+        if (!_isDrifting)
+            return;
+
+        _isDrifting = false;
+
+        FireOnDriftActive(false);
     }
 
     void CheckGameAreaBounds()
