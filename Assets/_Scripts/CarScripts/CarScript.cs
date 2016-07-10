@@ -369,10 +369,6 @@ public class CarScript : MonoBehaviour
                 GetKilled(DestroyReasonType.CarCrash, otherCar);
             }
         }
-        else if (other.gameObject.layer == (int)LayerEnum.SeaBounce)
-        {
-            EnteredSeaBounceBounds();
-        }
     }
 
 
@@ -386,9 +382,10 @@ public class CarScript : MonoBehaviour
 
         SoundController.PlayExplodeSound();
 
+        FireOnGetKilled(otherCar, reason);
+
         if (IsPlayerCar)
         {
-            FireOnGetKilled(otherCar, reason);
 
             FireOnLostKingEvent();
 
@@ -422,20 +419,6 @@ public class CarScript : MonoBehaviour
             if (otherCar == CarManagerBase.BaseInstance.PlayerRevengeCar)
                 FireOnGetRevengeEvent();
         }
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.layer == (int)LayerEnum.Sea)
-            InSea();
-        else if (other.gameObject.layer == (int)LayerEnum.SeaBounce)
-            EnteredSeaBounceBounds();
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.layer == (int)LayerEnum.Sea)
-            ExitedSea();
     }
 
     public void SetKing(bool state)
@@ -474,50 +457,6 @@ public class CarScript : MonoBehaviour
     {
         if (CameraFrustum.IsInCameraFrustum(destroyedCar.transform.position))
             CameraShakeScript.Instance.ShakeCamera();
-    }
-
-
-    void EnteredSeaBounceBounds()
-    {
-        if (IsPlayerCar)
-            InputController.RestrictPlayerInput(0.5f);
-
-        EscapeFromSea();
-    }
-
-    void InSea()
-    {
-        ParticleController.PlayWaterParticle();
-
-        DecreaseHealthDueToSea();
-    }
-
-    void ExitedSea()
-    {
-        ParticleController.StopWaterParticle();
-    }
-
-    void DecreaseHealthDueToSea()
-    {
-        int newHealth = CurHealth - CarSettings.Instance.HealthLostInSea;
-
-        if (newHealth >= CarSettings.Instance.HealthLostInSea)
-            DecreaseHealth(CarSettings.Instance.HealthLostInSea);
-        else if (newHealth < CarSettings.Instance.HealthLostInSea)
-            DecreaseHealth(newHealth);
-    }
-
-    void EscapeFromSea()
-    {
-        float velSign = Mathf.Sign(MovementController.Velocity.x);
-
-        MovementController.ResetVelocity();
-
-        Vector2 dir = CarSettings.Instance.EscapeFromSeaDir;
-        dir.Normalize();
-        dir.x *= velSign;
-
-        MovementController.SetVelocity(CarSettings.Instance.MaxSpeed * dir * 0.7f);
     }
 
     public void SetRevenge(bool state)

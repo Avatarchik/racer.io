@@ -51,6 +51,8 @@ public class UIController : MonoBehaviour
 
         FadeLayerUI.gameObject.SetActive(true);
 
+        Debug.Log("buraya geldi");
+
         NewGameUI.gameObject.SetActive(true);
         NewGameUI.DOPunchScale(Punch, PunchDuration, PunchVibrato, PunchElasticity);
 

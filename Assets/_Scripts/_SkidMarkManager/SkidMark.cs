@@ -53,13 +53,12 @@ public class SkidMark : MonoBehaviour
 
     void OnCarKilled(CarScript other, DestroyReasonType reason)
     {
+        Debug.Log("car killed");
         OnDriftActivated(false);
     }
 
     IEnumerator DeactivateRoutine()
     {
-        Debug.Log("deactivate routine");
-        
         StopListeningEvents();
 
         _parentCar = null;
@@ -68,14 +67,16 @@ public class SkidMark : MonoBehaviour
         
         yield return new WaitForSeconds(TrailRenderer.time);
 
+        TrailRenderer.time = 0;
+
+        yield return new WaitForSeconds(0.1f);
+
         Deactivate();
     }
 
     public void Deactivate()
     {
         SkidMarkManager.Instance.SkidMarkDeactivated(this);
-        
-        TrailRenderer.time = 0;
 
         gameObject.SetActive(false);
     }

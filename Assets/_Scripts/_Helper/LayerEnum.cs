@@ -7,6 +7,5 @@ public enum LayerEnum
     CarWanderZone = 12,
     HealthPack = 13,
     Bullet = 14,
-    Sea = 17,
-    SeaBounce = 18,
+    ArenaBorder = 17,
 }

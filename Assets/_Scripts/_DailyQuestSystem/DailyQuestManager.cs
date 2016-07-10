@@ -92,6 +92,7 @@ public class DailyQuestManager : MonoBehaviour
         if (nextQuestID > maxQuestID)
             nextQuestID = nextQuestID % maxQuestID + 1;
 
+        Debug.Log("quest id: " + nextQuestID);
 
         DailyQuestInfo questInfo = _dailyQuestInfoList.Single(val => val.QuestID == nextQuestID);
 
@@ -128,7 +129,8 @@ public class DailyQuestManager : MonoBehaviour
 
     public void InitNewGame()
     {
-        if (CurDailyQuest.IsCompleted)
+        if (CurDailyQuest == null
+            || CurDailyQuest.IsCompleted)
             return;
 
         CurDailyQuest.ActivateDailyQuest();
@@ -136,7 +138,8 @@ public class DailyQuestManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (CurDailyQuest.IsCompleted)
+        if (CurDailyQuest == null
+            || CurDailyQuest.IsCompleted)
             return;
 
         if (CurDailyQuest.IsCompleted)
