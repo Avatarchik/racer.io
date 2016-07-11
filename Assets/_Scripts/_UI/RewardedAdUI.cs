@@ -9,6 +9,9 @@ public class RewardedAdUI : MonoBehaviour
     public Image ButtonImage;
     public Text RemTimeText;
 
+    public Color InitialColor, BlinkColor;
+    public float BlinkDuration;
+
     bool _canPress;
 
     static RewardedAdUI _instance;
@@ -81,7 +84,33 @@ public class RewardedAdUI : MonoBehaviour
             if (!state)
                 StartCoroutine(CountdownRemDuration());
         }
+
+        if (state)
+            StartCoroutine(BlinkColorRoutine());
+        else
+        {
+            StopCoroutine(BlinkColorRoutine());
+
+            ButtonImage.color = InitialColor;
+        }
+
         return state;
+    }
+
+    IEnumerator BlinkColorRoutine()
+    {
+        Color initialColor = InitialColor;
+
+        while(true)
+        {
+            ButtonImage.color = BlinkColor;
+
+            yield return new WaitForSeconds(BlinkDuration);
+
+            ButtonImage.color = initialColor;
+
+            yield return new WaitForSeconds(BlinkDuration);
+        }
     }
 
     public void ShowRewardedAd()

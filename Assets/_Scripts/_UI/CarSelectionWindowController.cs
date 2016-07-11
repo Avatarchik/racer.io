@@ -15,16 +15,14 @@ public enum CarColorEnum
 
 public enum CarTypeEnum
 {
-    VJet,
-    Phantom,
-    Mirage,
-    StealthFighter,
-    XWingPrime,
-    Baron,
-    Curtiss,
-    Avenger,
-    Bolt,
-    Tornado,
+    BigFoot,
+    Buggy,
+    Bulky,
+    Fury,
+    MrGrim,
+    Spark,
+    Speedy,
+    Talon,
 }
 
 [System.Serializable]
@@ -34,7 +32,6 @@ public class CarSlot
     public Text CarNameText;
     public CarTypeEnum CarType;
     public GameObject LockImage;
-    public GameObject InfoButton;
 }
 
 [System.Serializable]
@@ -46,7 +43,6 @@ public class ColorInfo
 
 public class CarSelectionWindowController : MonoBehaviour
 {
-    public int UICarSpriteIndex;
     public List<Image> ColorSlotList;
     public List<CarSlot> CarSlotList;
     public List<ColorInfo> ColorInfoList;
@@ -148,33 +144,29 @@ public class CarSelectionWindowController : MonoBehaviour
 
     string GetCarSpriteName(CarColorEnum selectedCarColor, CarTypeEnum selectedCarType)
     {
-        return selectedCarColor.ToString() + "_" + selectedCarType.ToString() + "_" + UICarSpriteIndex.ToString();
+        return selectedCarColor.ToString() + "_" + selectedCarType.ToString();
     }
 
     public string GetCarName(CarTypeEnum planeTypeEnum)
     {
         switch (planeTypeEnum)
         {
-            case CarTypeEnum.VJet:
-                return "Fighter 2000";
-            case CarTypeEnum.Phantom:
-                return "Phantom";
-            case CarTypeEnum.Mirage:
-                return "Mirage";
-            case CarTypeEnum.StealthFighter:
-                return "Rogue";
-            case CarTypeEnum.XWingPrime:
-                return "X-Wing";
-            case CarTypeEnum.Curtiss:
-                return "Curtiss";
-            case CarTypeEnum.Baron:
-                return "Baron";
-            case CarTypeEnum.Avenger:
-                return "Avenger";
-            case CarTypeEnum.Bolt:
-                return "Bolt";
-            case CarTypeEnum.Tornado:
-                return "Tornado";
+            case CarTypeEnum.BigFoot:
+                return "Big Foot";
+            case CarTypeEnum.Buggy:
+                return "Buggy";
+            case CarTypeEnum.Bulky:
+                return "Bulky";
+            case CarTypeEnum.Fury:
+                return "Fury";
+            case CarTypeEnum.MrGrim:
+                return "Mr. Grim";
+            case CarTypeEnum.Speedy:
+                return "Speedy";
+            case CarTypeEnum.Spark:
+                return "Spark";
+            case CarTypeEnum.Talon:
+                return "Talon";
             default:
                 return "";
         }
@@ -200,7 +192,6 @@ public class CarSelectionWindowController : MonoBehaviour
         slot.CarSprite.color = new Color(255f, 255f, 255f);
 
         slot.LockImage.SetActive(false);
-        slot.InfoButton.SetActive(false);
 
         return slot;
     }
@@ -210,7 +201,6 @@ public class CarSelectionWindowController : MonoBehaviour
         slot.CarSprite.color = new Color(255f, 255f, 255f);
 
         slot.LockImage.SetActive(false);
-        slot.InfoButton.SetActive(false);
     }
 
     CarSlot LockCar(CarTypeEnum pte)
@@ -220,7 +210,6 @@ public class CarSelectionWindowController : MonoBehaviour
         slot.CarSprite.color = new Color(0f, 0f, 0f);
 
         slot.LockImage.SetActive(true);
-        slot.InfoButton.SetActive(true);
 
         return slot;
     }
@@ -230,7 +219,6 @@ public class CarSelectionWindowController : MonoBehaviour
         slot.CarSprite.color = new Color(0f, 0f, 0f);
 
         slot.LockImage.SetActive(true);
-        slot.InfoButton.SetActive(true);
     }
 
     public IEnumerator UnlockAfterInitReady(CarTypeEnum pte)

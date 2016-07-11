@@ -143,19 +143,19 @@ public class ExperienceManager : MonoBehaviour
 
     void CheckUnlockForLevel()
     {
-        if (CurLevel >= Constants.Phantom_Unlock_Level && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.Phantom))
+        if (CurLevel >= Constants.Phantom_Unlock_Level && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.Buggy))
         {
-            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Phantom);
+            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Buggy);
         }
 
-        if (CurLevel >= Constants.Curtiss_Unlock_Level && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.Curtiss))
+        if (CurLevel >= Constants.Curtiss_Unlock_Level && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.Speedy))
         {
-            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Curtiss);
+            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Speedy);
         }
 
-        if (CurLevel >= Constants.Baron_Unlock_Level && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.Baron))
+        if (CurLevel >= Constants.Baron_Unlock_Level && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.Spark))
         {
-            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Baron);
+            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Spark);
         }
     }
 
