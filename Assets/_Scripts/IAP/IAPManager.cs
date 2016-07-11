@@ -8,6 +8,7 @@ using System;
 
 public class IAPManager : MonoBehaviour
 {
+    public static IAPManager Instance { get; private set; }
 
     #if UNITY_ANDROID
 
@@ -17,6 +18,8 @@ public class IAPManager : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
+
         var key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAndC4gVVVTc7gsQKutCYPXol7rRuZlUVCjQIbUTYnFB25/KZnJt1QqSdb+SL2kcDy4pTzfR5ubTw91u2M3YAChY/G55JQzcHzp4CW7aYjKu5nZFpn4aGwsT1QwP7lzigC7zxEY+R26T6yF2Qjm3cXJz2YrDMKVgNBL5nNDDvDuyDYIIyriT0Obe0WBckjgG/jgUfGopHIVGCLvN1hwZFLIdTZ2bseYzjT4HEQoqIQS0wx66ABC6YfeJMhQmne3eiMvOlxy2vGIhRkp0cvFEWoTJ4kLnZpwcg+5H7pEM4giUMKO+dPcDzAwx1yueIfazQdKjKBPsuOP0SpPvyJ6GdvlwIDAQAB";
         GoogleIAB.init(key);
     }
