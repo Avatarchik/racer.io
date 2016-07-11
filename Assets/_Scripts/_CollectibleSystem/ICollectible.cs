@@ -1,15 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ICollectible : MonoBehaviour {
+public interface ICollectible
+{
+    void Collected();
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    CollectibleTypeEnum GetCollectibleType();
 }

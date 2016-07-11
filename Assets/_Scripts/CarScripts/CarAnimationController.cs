@@ -33,6 +33,8 @@ public class CarAnimationController : MonoBehaviour
         CarRenderer.enabled = true;
 
         InitAnimNames();
+
+        PlayAnim(CarAnimEnum.Idle);
     }
 
     void InitAnimNames()

@@ -352,6 +352,8 @@ public class CarMovementController : MonoBehaviour
 
         SkidMarkManager.Instance.StartedDrifting(MyCar);
 
+        MyCar.AnimationController.PlayAnim(CarAnimEnum.Rotate);
+
         _isDrifting = true;
         
         FireOnDriftActive(true);
@@ -361,6 +363,8 @@ public class CarMovementController : MonoBehaviour
     { 
         if (!_isDrifting)
             return;
+
+        MyCar.AnimationController.PlayAnim(CarAnimEnum.Idle);
 
         _isDrifting = false;
 
