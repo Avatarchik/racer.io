@@ -31,7 +31,7 @@ public class IAPManager : MonoBehaviour
         Debug.Log(string.Equals(productID, Constants.XWing_Product_ID));
         Debug.Log(string.Equals(productID, Constants.NoAds_Product_ID));
         Debug.Log(!PlayerProfile.Instance.CheckIfAdsAreRemoved());
-        if (string.Equals(productID, Constants.XWing_Product_ID) && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.XWingPrime))
+        if (string.Equals(productID, Constants.XWing_Product_ID) && !PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.MrGrim))
         {
             
             GoogleIAB.purchaseProduct(productID, _payload);
@@ -87,7 +87,7 @@ public class IAPManager : MonoBehaviour
         if (purchases.Any(x => x.productId.Contains("com.lastchance.xwing")))
         {
             Debug.Log("unlockcar");
-            PlayerProfile.Instance.UnlockCar(CarTypeEnum.XWingPrime);
+            PlayerProfile.Instance.UnlockCar(CarTypeEnum.MrGrim);
         }
         else if (purchases.Any(x => x.productId.Contains("com.lastchance.noads")))
         {
@@ -117,7 +117,7 @@ public class IAPManager : MonoBehaviour
         if (decryptValue == Constants.Sec_ID)
         {
             if (purchase.productId == Constants.XWing_Product_ID)
-                PlayerProfile.Instance.UnlockCar(CarTypeEnum.XWingPrime);
+                PlayerProfile.Instance.UnlockCar(CarTypeEnum.MrGrim);
             else if (purchase.productId == Constants.NoAds_Product_ID)
                 PlayerProfile.Instance.RemoveAds();
         }

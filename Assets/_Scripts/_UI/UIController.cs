@@ -145,7 +145,7 @@ public class UIController : MonoBehaviour
 
         switch (carType)
         {
-            case CarTypeEnum.XWingPrime:
+            case CarTypeEnum.MrGrim:
                 IAPManager.Instance.PurchaseProduct(Constants.XWing_Product_ID);
                 break;
         }

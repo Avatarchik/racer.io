@@ -33,7 +33,7 @@ public class PlayGameConnector : MonoBehaviour
                 if (PlayGamesPlatform.Instance.GetAchievement(GPGSIds.achievement_mega_killer) != null &&
                     PlayGamesPlatform.Instance.GetAchievement(GPGSIds.achievement_mega_killer).IsUnlocked)
                 {
-                    PlayerProfile.Instance.UnlockCar(CarTypeEnum.StealthFighter);
+                    PlayerProfile.Instance.UnlockCar(CarTypeEnum.Fury);
                 }
                 StartCoroutine(SetUsernameWhenAvailable());
 
@@ -115,7 +115,7 @@ public class PlayGameConnector : MonoBehaviour
 
         if (PlayGamesPlatform.Instance.GetAchievement(GPGSIds.achievement_mega_killer).IsUnlocked)
         {
-            PlayerProfile.Instance.UnlockCar(CarTypeEnum.StealthFighter);
+            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Fury);
         }
     }
 }

@@ -65,7 +65,7 @@ public class PlayerProfile : MonoBehaviour
         {
             UnlockedCars.Add((CarTypeEnum)carNumber, false);
         }
-        UnlockCar(CarTypeEnum.VJet);
+        UnlockCar(CarTypeEnum.BigFoot);
     }
 
     void InitAdRemoval()
@@ -293,7 +293,7 @@ public class PlayerProfile : MonoBehaviour
         else
             UnlockedCars.Add(pte, true);
 
-        if (pte == CarTypeEnum.XWingPrime && XWingUnlocked != null && unlockedFirstTime)
+        if (pte == CarTypeEnum.MrGrim && XWingUnlocked != null && unlockedFirstTime)
         {
             XWingUnlocked();
         }

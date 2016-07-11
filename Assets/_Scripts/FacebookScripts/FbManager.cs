@@ -244,7 +244,7 @@ public class FbManager : MonoBehaviour
         // Some platforms return the empty string instead of null.
         if (!string.IsNullOrEmpty(result.Error))
         {
-            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Mirage);
+            PlayerProfile.Instance.UnlockCar(CarTypeEnum.Bulky);
         }
         else if (result.Cancelled)
         {

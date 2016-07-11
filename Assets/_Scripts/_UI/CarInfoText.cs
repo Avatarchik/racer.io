@@ -17,7 +17,7 @@ public class CarInfoText : MonoBehaviour
     {
         SetDefault();
 
-        if (PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.XWingPrime))
+        if (PlayerProfile.Instance.CheckIfCarUnlocked(CarTypeEnum.MrGrim))
         {
             UnlockXWingUI();
         }
@@ -63,22 +63,22 @@ public class CarInfoText : MonoBehaviour
 
         switch (pte)
         {
-            case CarTypeEnum.Phantom:
+            case CarTypeEnum.Buggy:
                 UIInfoText.text = Constants.Phantom_Unlock_Text;
                 break;
-            case CarTypeEnum.Mirage:
+            case CarTypeEnum.Bulky:
                 UIInfoText.text = Constants.Mirage_Unlock_Text;
                 break;
-            case CarTypeEnum.StealthFighter:
+            case CarTypeEnum.Fury:
                 UIInfoText.text = Constants.StealthFighter_Unlock_Text;
                 break;
-            case CarTypeEnum.XWingPrime:
+            case CarTypeEnum.MrGrim:
                 UIInfoText.text = Constants.XWingPrime_Unlock_Text;
                 break;
-            case CarTypeEnum.Curtiss:
+            case CarTypeEnum.Speedy:
                 UIInfoText.text = Constants.Curtiss_Unlock_Text;
                 break;
-            case CarTypeEnum.Baron:
+            case CarTypeEnum.Spark:
                 UIInfoText.text = Constants.Baron_Unlock_Text;
                 break;
             default:
