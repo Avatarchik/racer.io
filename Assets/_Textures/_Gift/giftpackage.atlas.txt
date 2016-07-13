@@ -1,0 +1,90 @@
+
+giftpackage.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+racerio_car_bag_a1
+  rotate: false
+  xy: 2, 999
+  size: 349, 484
+  orig: 349, 484
+  offset: 0, 0
+  index: -1
+racerio_car_bag_a4
+  rotate: false
+  xy: 2, 1485
+  size: 364, 477
+  orig: 364, 477
+  offset: 0, 0
+  index: -1
+racerio_car_bag_a5
+  rotate: false
+  xy: 731, 1607
+  size: 366, 355
+  orig: 366, 355
+  offset: 0, 0
+  index: -1
+racerio_car_bag_a6
+  rotate: false
+  xy: 1099, 1646
+  size: 332, 316
+  orig: 332, 316
+  offset: 0, 0
+  index: -1
+racerio_car_bag_a7
+  rotate: false
+  xy: 1748, 1777
+  size: 211, 185
+  orig: 211, 185
+  offset: 0, 0
+  index: -1
+racerio_car_bag_a8
+  rotate: false
+  xy: 731, 1457
+  size: 170, 148
+  orig: 170, 148
+  offset: 0, 0
+  index: -1
+racerio_car_bag_b1
+  rotate: false
+  xy: 2, 529
+  size: 340, 468
+  orig: 340, 468
+  offset: 0, 0
+  index: -1
+racerio_car_bag_b4
+  rotate: false
+  xy: 368, 1504
+  size: 361, 458
+  orig: 361, 458
+  offset: 0, 0
+  index: -1
+racerio_car_bag_b5
+  rotate: true
+  xy: 2, 170
+  size: 357, 336
+  orig: 357, 336
+  offset: 0, 0
+  index: -1
+racerio_car_bag_b6
+  rotate: false
+  xy: 1433, 1665
+  size: 313, 297
+  orig: 313, 297
+  offset: 0, 0
+  index: -1
+racerio_car_bag_b7
+  rotate: false
+  xy: 2, 2
+  size: 241, 166
+  orig: 241, 166
+  offset: 0, 0
+  index: -1
+racerio_car_bag_b8
+  rotate: false
+  xy: 1748, 1646
+  size: 210, 129
+  orig: 210, 129
+  offset: 0, 0
+  index: -1

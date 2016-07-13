@@ -5,11 +5,11 @@ public class RandomGiftMachineManager : MonoBehaviour
 {
     public enum RandomGiftColor
     {
-        Red,
-        Blue,
-        Green,
-        Black,
-        White
+        red,
+        blue,
+        green,
+        cyan,
+        purple
     }
 
     int[] _randomColors;
@@ -55,7 +55,7 @@ public class RandomGiftMachineManager : MonoBehaviour
 
     void SelectRandomPackage(int amount)
     {
-        _randomColors = Utilities.RandomIntinAmount(amount, 0, 6);
+        _randomColors = Utilities.RandomIntinAmount(amount, 0, 5);
     }
 
     void InitPackages(int amount)
@@ -63,8 +63,9 @@ public class RandomGiftMachineManager : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject giftObject = Object.Instantiate(GiftPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+            Vector3 localScale = giftObject.transform.localScale;
             giftObject.transform.parent = transform;
-            giftObject.transform.localScale = Vector3.one;
+            giftObject.transform.localScale = localScale;//Vector3.one;
             _packages.Add(giftObject.GetComponent<GiftPackage>());
         }
     }
@@ -75,7 +76,7 @@ public class RandomGiftMachineManager : MonoBehaviour
         for (int i = 0, _packagesCount = _packages.Count; i < _packagesCount; i++)
         {
             GiftPackage package = _packages[i];
-            package.SetColorAndScale((RandomGiftColor)_randomColors[i]);
+            package.SetColor((RandomGiftColor)_randomColors[i]);
         }
     }
 

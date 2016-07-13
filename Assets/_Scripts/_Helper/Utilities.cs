@@ -359,8 +359,6 @@ public static class Utilities
         var randomArr = new int[amount];
         for (int i = 0; i < amount; i++)
         {
-            Debug.Log(randomArr[i]);
-
             randomArr[i] = R.Next(minNumber, maxNumber);
         }
         return randomArr;
