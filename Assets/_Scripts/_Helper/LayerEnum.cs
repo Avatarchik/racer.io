@@ -8,4 +8,5 @@ public enum LayerEnum
     HealthPack = 13,
     Bullet = 14,
     ArenaBorder = 17,
+    Collectible = 18,
 }

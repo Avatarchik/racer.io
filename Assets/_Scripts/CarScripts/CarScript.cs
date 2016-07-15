@@ -45,6 +45,7 @@ public class CarScript : MonoBehaviour
     public PlayerInputController InputController;
     public CarAnimationController AnimationController;
     public CarParticleController ParticleController;
+    public CarCollectibleController CollectibleController;
     public WeaponSystemController WeaponSystemController;
     public CarSoundController SoundController;
     public CarAI CarAI;
@@ -329,17 +330,17 @@ public class CarScript : MonoBehaviour
 
         while (_curDur <= GhostModeDuration)
         {
-            if (AnimationController.SpriteAnimator.Sprite.color.a == 1f)
-                AnimationController.SpriteAnimator.Sprite.color = new Color(1f, 1f, 1f, 0.3f);
+            if (AnimationController.CarSprite.color.a == 1f)
+                AnimationController.CarSprite.color = new Color(1f, 1f, 1f, 0.3f);
             else
-                AnimationController.SpriteAnimator.Sprite.color = new Color(1f, 1f, 1f, 1f);
+                AnimationController.CarSprite.color = new Color(1f, 1f, 1f, 1f);
 
             _curDur += 0.1f;
 
             yield return new WaitForSeconds(0.1f);
         }
 
-        AnimationController.SpriteAnimator.Sprite.color = new Color(1f, 1f, 1f, 1f);
+        AnimationController.CarSprite.color = new Color(1f, 1f, 1f, 1f);
 
         IsInGhostMode = false;
 

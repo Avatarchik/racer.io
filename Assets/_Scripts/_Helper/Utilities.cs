@@ -336,9 +336,16 @@ public static class Utilities
 
     #region Audio Region
 
-    public static IEnumerator WaitForSoundFinish(AudioSource audioSource)
+    public static IEnumerator WaitForSoundFinish(AudioSource source, Action callback)
     {
-        yield return new WaitForSeconds(audioSource.clip.length);
+        yield return new WaitForSeconds(0.05f);
+
+        while (source.isPlaying)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        if (callback != null)
+            callback();
     }
 
     #endregion

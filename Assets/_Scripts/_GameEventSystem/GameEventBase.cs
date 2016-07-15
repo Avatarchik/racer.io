@@ -16,6 +16,8 @@ public class GameEventBase : MonoBehaviour
     public string SoonNotificationDesc;
     public string StartedNotificationDesc;
 
+    public string EventDescription;
+
     int _soonNotificationID;
     int _startedNotificationID;
 
@@ -115,7 +117,6 @@ public class GameEventBase : MonoBehaviour
 
     protected virtual void StartEvent()
     {
-        //Debug.Log("event started");
         SetEventActive(true);
 
         if (_updateRemTimeRoutine != null)
