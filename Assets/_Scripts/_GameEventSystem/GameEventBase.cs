@@ -4,7 +4,7 @@ using System;
 
 public enum GameEventType
 {
-    X2XP = 1,
+    CoinTreasure = 1,
 }
 
 public class GameEventBase : MonoBehaviour
