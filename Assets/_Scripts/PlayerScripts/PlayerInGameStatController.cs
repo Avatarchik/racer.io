@@ -15,7 +15,6 @@ public class PlayerInGameStatController : MonoBehaviour
     int _collectedNewWeaponCount;
     int _stayedAsKingDuration;
     int _totalStrikeCount;
-    int _initialXP;
 
     IEnumerator _stayAsKingRoutine;
 
@@ -33,12 +32,10 @@ public class PlayerInGameStatController : MonoBehaviour
 
     void OnEnable()
     {
-        ExperienceManager.LevelIncreased += OnLevelIncreased;
     }
 
     void OnDisable()
     {
-        ExperienceManager.LevelIncreased -= OnLevelIncreased;
     }
 
 
@@ -55,7 +52,6 @@ public class PlayerInGameStatController : MonoBehaviour
         _targetCar.OnBecameKing += OnBecameKing;
         _targetCar.OnLostKing += OnLostKing;
 
-        _initialXP = ExperienceManager.Instance.CurXP;
     }
 
 
@@ -67,17 +63,6 @@ public class PlayerInGameStatController : MonoBehaviour
         _targetCar.OnDidStrike -= OnDidStrike;
         _targetCar.OnBecameKing -= OnBecameKing;
         _targetCar.OnLostKing -= OnLostKing;
-
-        ExperienceManager.Instance.IncreaseExperience(ExperienceManager.ExperienceSource.CarKill, _destroyedCarCount);
-        ExperienceManager.Instance.IncreaseExperience(ExperienceManager.ExperienceSource.CollectedhealthPack, _collectedHealthPackCount);
-        ExperienceManager.Instance.IncreaseExperience(ExperienceManager.ExperienceSource.CollectedNewWeapon, _collectedNewWeaponCount);
-        ExperienceManager.Instance.IncreaseExperience(ExperienceManager.ExperienceSource.StayedAsKing, _stayedAsKingDuration);
-        ExperienceManager.Instance.IncreaseExperience(ExperienceManager.ExperienceSource.Strike, _totalStrikeCount);
-
-        GoogleAnalytics.LogEvent(new EventHitBuilder()
-            .SetEventCategory("PlayerStat")
-            .SetEventAction("GainedExperienceInOneGame")
-            .SetEventValue(ExperienceManager.Instance.CurXP - _initialXP));
     }
 
     void ResetStats()
@@ -87,15 +72,6 @@ public class PlayerInGameStatController : MonoBehaviour
         _collectedNewWeaponCount = 0;
         _stayedAsKingDuration = 0;
         _totalStrikeCount = 0;
-        _initialXP = 0;
-    }
-
-    void OnLevelIncreased(int levelDiff)
-    {
-        GoogleAnalytics.LogEvent(new EventHitBuilder()
-            .SetEventCategory("PlayerStat")
-            .SetEventAction("UserLevelIncreased")
-            .SetEventValue(ExperienceManager.Instance.CurLevel));
     }
 
     void OnDestroyedCar(CarScript p, DestroyReasonType r)

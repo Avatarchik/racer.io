@@ -12,19 +12,17 @@ public class CarAnimationController : MonoBehaviour
 {
     public CarScript MyCar;
     public MeshRenderer CarRenderer;
-    public tk2dSpriteAnimator SpriteAnimator;
+    public tk2dSprite CarSprite;
 
-    const string IDLE_ANIM_NAME = "Idle";
-    const string ROTATE_ANIM_NAME = "Rotate";
+    const string IDLE_SPRITE_NAME = "_b";
+    const string ROTATE_SPRITE_NAME = "_a";
 
-    string _idleAnimName;
-    string _rotateAnimName;
+    int _idleSpriteID;
+    int _rotateSpriteID;
 
     bool _canChangeAnim;
 
     CarAnimEnum _curAnimEnum;
-
-    IEnumerator _waitForAnimFinishRoutine;
 
     public void InitAnimationController()
     {
@@ -32,15 +30,22 @@ public class CarAnimationController : MonoBehaviour
 
         CarRenderer.enabled = true;
 
-        InitAnimNames();
+        InitSpriteIDs();
 
         PlayAnim(CarAnimEnum.Idle);
     }
 
-    void InitAnimNames()
+    void InitSpriteIDs()
     {        
-        _idleAnimName = IDLE_ANIM_NAME + "_" + MyCar.CarType.ToString() + "_" + MyCar.CarColor.ToString();
-        _rotateAnimName = ROTATE_ANIM_NAME + "_" + MyCar.CarType.ToString() + "_" + MyCar.CarColor.ToString();
+        string idleSpriteName = MyCar.CarType.ToString() + "_" + MyCar.CarColor.ToString() + IDLE_SPRITE_NAME;
+        idleSpriteName = idleSpriteName.ToLower();
+
+        string rotateSpriteName = MyCar.CarType.ToString() + "_" + MyCar.CarColor.ToString() + ROTATE_SPRITE_NAME;
+        rotateSpriteName = rotateSpriteName.ToLower();
+
+        _idleSpriteID = CarSprite.Collection.GetSpriteIdByName(idleSpriteName);
+        _rotateSpriteID = CarSprite.Collection.GetSpriteIdByName(rotateSpriteName);
+
     }
 
     public void PlayAnim(CarAnimEnum animEnum)
@@ -53,10 +58,10 @@ public class CarAnimationController : MonoBehaviour
         switch (animEnum)
         {
             case CarAnimEnum.Idle:
-                SpriteAnimator.Play(_idleAnimName);
+                CarSprite.SetSprite(_idleSpriteID);
                 break;
             case CarAnimEnum.Rotate:
-                SpriteAnimator.Play(_rotateAnimName);
+                CarSprite.SetSprite(_rotateSpriteID);
                 break;
         }
         

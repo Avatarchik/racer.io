@@ -17,6 +17,8 @@ public class CameraFollowScript : MonoBehaviour
 
     public float DampTime;
 
+    public float VelocityCoef;
+
     Vector3 _velocity;
 
     void Awake()
@@ -64,6 +66,8 @@ public class CameraFollowScript : MonoBehaviour
 
         newPos.x = TargetCar.MovementController.Rigidbody.position.x;
         newPos.y = TargetCar.MovementController.Rigidbody.position.y;
+
+        newPos += (Vector3)TargetCar.MovementController.Velocity * VelocityCoef;
 
         Rigidbody.MovePosition(Vector3.SmoothDamp(Rigidbody.position, newPos, ref _velocity, DampTime));
 

@@ -8,8 +8,6 @@ public class RewardedVideoManager : MonoBehaviour
 
     public static RewardedVideoManager Instance{ get { return _instance; } }
 
-    public float RewardXPCoef;
-
     public int WatchVideoIntervalInSecs;
 
     public int WatchVideoRewardDurationInSecs;
@@ -109,8 +107,6 @@ public class RewardedVideoManager : MonoBehaviour
 
     void ActivateReward()
     {
-        ExperienceManager.Instance.SetXPCoef(RewardXPCoef);
-
         _isRewardActive = true;
 
         if (_updateRewardRoutine != null)
@@ -124,7 +120,6 @@ public class RewardedVideoManager : MonoBehaviour
     {
         _isRewardActive = false;
 
-        ExperienceManager.Instance.SetXPCoef(1.0f / RewardXPCoef);
     }
 
     IEnumerator UpdateRewardProgress()

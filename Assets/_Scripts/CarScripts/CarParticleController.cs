@@ -11,8 +11,6 @@ public class CarParticleController : MonoBehaviour
     Vector2 _explodeInitLocalPos;
     Transform _explodeInitParent;
 
-    public ParticleSystem WaterParticle;
-
     void Awake()
     {
         _explodeInitParent = ExplodeParticle.transform.parent;
@@ -26,6 +24,8 @@ public class CarParticleController : MonoBehaviour
 
     public void PlayHitParticle()
     {
+        return;
+        
         Vector3 particleNewPos = GetRandomHitPos();
         particleNewPos.z = HitParticle.transform.position.z;
         HitParticle.transform.position = particleNewPos;
@@ -50,20 +50,5 @@ public class CarParticleController : MonoBehaviour
 
         ExplodeParticle.Play();
 
-    }
-
-    public void PlayWaterParticle()
-    {
-        if (!WaterParticle.isPlaying)
-        {
-            WaterParticle.gameObject.SetActive(true);
-            WaterParticle.Play();
-        }
-    }
-
-    public void StopWaterParticle()
-    {
-        WaterParticle.Stop();
-        WaterParticle.gameObject.SetActive(false);
     }
 }

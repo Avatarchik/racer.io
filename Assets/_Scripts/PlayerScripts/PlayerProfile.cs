@@ -35,7 +35,6 @@ public class PlayerProfile : MonoBehaviour
         _instance = this;
         InitUnlockedCars();
         InitAdRemoval();
-        InitExperience();
         InitDailyQuest();
         LoadFile();
     }
@@ -73,11 +72,6 @@ public class PlayerProfile : MonoBehaviour
         _adRemove = new KeyValuePair<string, bool>(Constants.NoAds_Product_ID, false);
     }
 
-    void InitExperience()
-    {
-        ExperienceManager.Instance.InitLevelAndXP(1, 0);
-    }
-
     DateTime _dailyQuestGivenDate;
     int _dailyQuestID, _dailyQuestCurAmount;
 
@@ -112,7 +106,6 @@ public class PlayerProfile : MonoBehaviour
                 {
                     LoadUnlockedCars(saveObject[_unlockedCarsKey]);
                     LoadAdRemoval(saveObject[Constants.NoAds_Product_ID]);
-                    LoadExperience(saveObject[_XPKey]);
                     LoadDailyQuest(saveObject[_DQKey]);
                 }
                 else
@@ -159,15 +152,6 @@ public class PlayerProfile : MonoBehaviour
         }
     }
 
-    void LoadExperience(JSONValue jSONValue)
-    {
-        int CurXP = (int)jSONValue.Obj["CurXP"].Number;
-        int CurLevel = (int)jSONValue.Obj["CurLevel"].Number;
-
-        if (ExperienceLoaded != null)
-            ExperienceLoaded(CurLevel, CurXP);
-    }
-
     void LoadDailyQuest(JSONValue jSONValue)
     {
         _dailyQuestGivenDate = Utilities.ConvertStringToDate(jSONValue.Obj["DailyQuestGivenDate"].Str);
@@ -209,7 +193,6 @@ public class PlayerProfile : MonoBehaviour
             SaveCurrentVersion(ref saveObject);
             SaveUnlockedCars(ref saveObject);
             SaveAdRemoval(ref saveObject);
-            SaveExperience(ref saveObject);
             SaveDailyQuest(ref saveObject);
             EncryptSaveFile(saveObject);
         }
@@ -237,17 +220,6 @@ public class PlayerProfile : MonoBehaviour
     void SaveAdRemoval(ref JSONObject saveObject)
     {
         saveObject.Add(new KeyValuePair<string, JSONValue>(_adRemove.Key, _adRemove.Value));
-    }
-
-    void SaveExperience(ref JSONObject saveObject)
-    {
-        JSONObject experienceObject = new JSONObject
-        {
-            { "CurXP", ExperienceManager.Instance.CurXP },
-            { "CurLevel", ExperienceManager.Instance.CurLevel }
-        };
-
-        saveObject.Add(_XPKey, experienceObject);
     }
 
     void SaveDailyQuest(ref JSONObject saveObject)

@@ -141,10 +141,7 @@ public class DailyQuestManager : MonoBehaviour
         if (CurDailyQuest == null
             || CurDailyQuest.IsCompleted)
             return;
-
-        if (CurDailyQuest.IsCompleted)
-            ExperienceManager.Instance.IncreaseExperience(ExperienceManager.ExperienceSource.QuestCompletion, 1);
-
+        
         CurDailyQuest.DeactivateDailyQuest();
 
         FireOnQuestProgressUpdated();

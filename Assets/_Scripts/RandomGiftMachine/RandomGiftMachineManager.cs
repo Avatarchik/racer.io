@@ -5,30 +5,37 @@ public class RandomGiftMachineManager : MonoBehaviour
 {
     public enum RandomGiftColor
     {
-        Red,
-        Blue,
-        Green,
-        Black,
-        White
+        red,
+        blue,
+        green,
+        cyan,
+        purple
     }
 
-    int[] _randomColors;
+    public static RandomGiftMachineManager Instance { get { return _instance; } }
 
-    List<GiftPackage> _packages;
+    static RandomGiftMachineManager _instance;
 
-    public GameObject GiftPrefab;
+    static int[] _randomColors;
+
+    static List<GiftPackage> _packages;
+
 
     void Awake()
     {
         _packages = new List<GiftPackage>();
         _randomColors = new int[Constants.RANDOM_GIFT_AMOUNT];
-        InitPackages(Constants.RANDOM_GIFT_AMOUNT);
-        OpenSelection();
+        _instance = this;
+    }
 
+    void OnDestroy()
+    {
+        _instance = null;
     }
 
     void OnEnable()
     {
+        InitPackages();
         SubscribeEvents();
     }
 
@@ -53,20 +60,23 @@ public class RandomGiftMachineManager : MonoBehaviour
         }
     }
 
-    void SelectRandomPackage(int amount)
+    static void SelectRandomPackage(int amount)
     {
-        _randomColors = Utilities.RandomIntinAmount(amount, 0, 6);
+        _randomColors = Utilities.RandomIntinAmount(amount, 0, 5);
     }
 
-    void InitPackages(int amount)
+    void InitPackages()
     {
-        for (int i = 0; i < amount; i++)
+        _packages.AddRange(GetComponentsInChildren<GiftPackage>(true));
+        /*for (int i = 0; i < amount; i++)
         {
             GameObject giftObject = Object.Instantiate(GiftPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+            Vector3 localScale = giftObject.transform.localScale;
             giftObject.transform.parent = transform;
-            giftObject.transform.localScale = Vector3.one;
+            giftObject.transform.localScale = localScale;//Vector3.one;
             _packages.Add(giftObject.GetComponent<GiftPackage>());
-        }
+        }*/
+
     }
 
     public void OpenSelection()
@@ -75,7 +85,8 @@ public class RandomGiftMachineManager : MonoBehaviour
         for (int i = 0, _packagesCount = _packages.Count; i < _packagesCount; i++)
         {
             GiftPackage package = _packages[i];
-            package.SetColorAndScale((RandomGiftColor)_randomColors[i]);
+            package.gameObject.SetActive(true);
+            package.SetColor((RandomGiftColor)_randomColors[i]);
         }
     }
 

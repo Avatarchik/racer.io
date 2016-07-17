@@ -7,52 +7,45 @@ public enum CollectibleTypeEnum
     Coin,
 }
 
-public class CollectibleBase : MonoBehaviour 
+public abstract class CollectibleBase : SpawnableBase
 {
     public CollectibleTypeEnum CollectibleType;
 
+    public AudioSource CollectedSound;
+
     protected bool _canBeCollected;
 
-    protected CollectibleManagerBase _parentManager;
-
-    public void InitCollectible(CollectibleManagerBase parentManager)
+    public void InitCollectible(SpawnableManagerBase parentManager)
     {
         _parentManager = parentManager;
+
+        Deactivate();
     }
 
-    public virtual void Activate(Vector3 spawnPos)
+    public override void Activate(Vector3 spawnPos)
     {
-        transform.position = spawnPos;
-
-        transform.parent = null;
-
-        gameObject.SetActive(true);
+        _canBeCollected = true;
+        
+        base.Activate(spawnPos);
     }
 
-    public virtual void Deactivate()
+    public virtual void Collected(CarScript car)
     {
-        transform.parent = _parentManager.transform;
+        if (!_canBeCollected)
+            return;
 
-        _parentManager.AddToDeactiveList(this);
+        SetRendererActive(false);
 
-        gameObject.SetActive(false);
-    }
+        Use(car);
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == (int)LayerEnum.Car)
-        {
-            if (_canBeCollected)
-                Collected();
-        }
-    }
-
-    public virtual void Collected()
-    {
         _canBeCollected = false;
 
-        //_parentManager.CollectedCollectible(this);
+        CollectedSound.Play();
+
+        StartCoroutine(Utilities.WaitForSoundFinish(CollectedSound, Deactivate));
     }
+
+    public abstract void Use(CarScript car);
 
     public CollectibleTypeEnum GetCollectibleType()
     {
