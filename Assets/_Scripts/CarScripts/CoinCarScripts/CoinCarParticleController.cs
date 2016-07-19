@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CarParticleController : MonoBehaviour
+public class CoinCarParticleController : MonoBehaviour 
 {
     public CircleCollider2D HitParticleRange;
-    
+
     public tk2dSpriteAnimator HitParticle;
     public tk2dSpriteAnimator ExplodeParticle;
 
@@ -19,8 +19,6 @@ public class CarParticleController : MonoBehaviour
 
     public void PlayHitParticle()
     {
-        return;
-        
         Vector3 particleNewPos = GetRandomHitPos();
         particleNewPos.z = HitParticle.transform.position.z;
         HitParticle.transform.position = particleNewPos;

@@ -9,4 +9,5 @@ public enum LayerEnum
     Bullet = 14,
     ArenaBorder = 17,
     Collectible = 18,
+    CoinCar = 19,
 }

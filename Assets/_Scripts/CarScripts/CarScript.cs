@@ -302,7 +302,6 @@ public class CarScript : MonoBehaviour
 
         AnimationController.InitAnimationController();
         MovementController.ActivatePlayerMovement();
-        ParticleController.Activate();
         SoundController.Activate();
 
         if (IsPlayerCar)
@@ -369,6 +368,17 @@ public class CarScript : MonoBehaviour
             {
                 GetKilled(DestroyReasonType.CarCrash, otherCar);
             }
+        }
+        else if(other.gameObject.layer == (int)LayerEnum.CoinCar)
+        {
+            if (IsInGhostMode
+                || !_canGetHit)
+                return;
+
+            DecreaseHealth(_curHealth);
+
+            if (_curHealth == 0)
+                GetKilled(DestroyReasonType.CarCrash, null);
         }
     }
 
