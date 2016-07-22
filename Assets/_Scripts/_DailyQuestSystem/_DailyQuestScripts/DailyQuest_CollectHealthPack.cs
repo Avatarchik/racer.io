@@ -3,11 +3,11 @@ using System.Collections;
 
 public class DailyQuest_CollectHealthPack : DailyQuestBase
 {
-    CarScript _targetCar;
+    CombatCarScript _targetCar;
 
     public override void StartListeningEvents()
     {
-        _targetCar = CarManagerBase.BaseInstance.GetPlayerCarScript();
+        _targetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
 
         _targetCar.OnCollectedHealthPack += OnCollectedhealthPack;
     }

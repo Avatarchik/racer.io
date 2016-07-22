@@ -29,7 +29,7 @@ public abstract class CollectibleBase : SpawnableBase
         base.Activate(spawnPos);
     }
 
-    public virtual void Collected(CarScript car)
+    public virtual void Collected(CarBase car)
     {
         if (!_canBeCollected)
             return;
@@ -45,7 +45,7 @@ public abstract class CollectibleBase : SpawnableBase
         StartCoroutine(Utilities.WaitForSoundFinish(CollectedSound, Deactivate));
     }
 
-    public abstract void Use(CarScript car);
+    public abstract void Use(CarBase car);
 
     public CollectibleTypeEnum GetCollectibleType()
     {

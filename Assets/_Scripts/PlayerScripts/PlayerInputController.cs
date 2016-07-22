@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class PlayerInputController : MonoBehaviour
 {
-    public CarScript MyCar;
-    public CarMovementController MovementController;
+    public CombatCarScript MyCar;
+    public CombatCarMovementController MovementController;
 
     Vector3 _inputDirection;
 
@@ -15,6 +15,10 @@ public class PlayerInputController : MonoBehaviour
 
     bool _canGetInput;
     IEnumerator _restrictInputRoutine;
+
+    bool _isFireButtonPressed;
+
+    public bool IsFireButtonPressed{ get { return _isFireButtonPressed; } }
 
     public void ActivateInputController()
     {
@@ -42,7 +46,7 @@ public class PlayerInputController : MonoBehaviour
 
     void CheckInput()
     {
-        //PlayerCarFireController.Instance.FireCarWeapon();
+        MyCar.WeaponController.Fire();
         
         CheckDefaultMovement();
     }

@@ -9,7 +9,7 @@ public interface IDamagable
 
     IDamagable GetDamagableInterface();
 
-    void TakeDamage(int damageAmount, CarScript car);
+    void TakeDamage(int damageAmount, CombatCarScript car);
 
-    void Die(CarScript car);
+    void Die(CombatCarScript car);
 }

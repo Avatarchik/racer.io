@@ -6,7 +6,7 @@ public class DailyQuest_DestroyCar : DailyQuestBase
     DestroyReasonType _destroyReason;
     WeaponTypeEnum _weaponType;
 
-    CarScript _targetCar;
+    CombatCarScript _targetCar;
 
     const string BY_CRASHING = " by crashing";
     const string BY_WEAPON = " by using {weapon}";
@@ -24,7 +24,7 @@ public class DailyQuest_DestroyCar : DailyQuestBase
 
     public override void StartListeningEvents()
     { 
-        _targetCar = CarManagerBase.BaseInstance.GetPlayerCarScript();
+        _targetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
 
         if (_weaponType == WeaponTypeEnum.None)
             _targetCar.OnDestroyedCar += OnDestroyedCar;
@@ -42,7 +42,7 @@ public class DailyQuest_DestroyCar : DailyQuestBase
 
     #endregion
 
-    void OnDestroyedCar(CarScript destroyedCar, DestroyReasonType reasonType)
+    void OnDestroyedCar(CarBase destroyedCar, DestroyReasonType reasonType)
     {
         if (_destroyReason == reasonType
             || _destroyReason == DestroyReasonType.None)
@@ -52,7 +52,7 @@ public class DailyQuest_DestroyCar : DailyQuestBase
         }
     }
 
-    void OnDestroyedCarWithWeapon(CarScript destroyedCar, WeaponTypeEnum weaponType)
+    void OnDestroyedCarWithWeapon(CarBase destroyedCar, WeaponTypeEnum weaponType)
     {
         if (_weaponType == weaponType)
         {

@@ -41,7 +41,7 @@ public class CoinTreasure : SpawnableBase, IDamagable
         return _damagableInterface;
     }
 
-    public void TakeDamage(int damageAmount, CarScript car)
+    public void TakeDamage(int damageAmount, CombatCarScript car)
     {
         if (!_canTakeDamage)
             return;
@@ -56,7 +56,7 @@ public class CoinTreasure : SpawnableBase, IDamagable
         }
     }
 
-    public void Die(CarScript car)
+    public void Die(CombatCarScript car)
     {
         _canTakeDamage = false;
         

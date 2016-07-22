@@ -28,22 +28,22 @@ public class InGameUIAmmoContainer : MonoBehaviour
 
     void LateUpdate()
     {
-        CarScript targetCar = CarManagerBase.BaseInstance.MyCar.Value;
+        CombatCarScript targetCar = CombatCarManagerBase.BaseInstance.MyCar.Value;
 
         if (GameManagerBase.BaseInstance.IsInWatchMode)
         {
             targetCar = CameraFollowScript.Instance.TargetCar;
 
             if (targetCar != null)
-                ChangeWeaponIcon(targetCar.WeaponSystemController.ActiveWeaponSystem.WeaponType);
+                ChangeWeaponIcon(targetCar.WeaponController.CurWeapon.WeaponType);
         }
 
 
-        if (targetCar != null && targetCar.WeaponSystemController.ActiveWeaponSystem != null)
+        if (targetCar != null && targetCar.WeaponController.CurWeapon != null)
         {
-            AmmoCountLabel.text = targetCar.WeaponSystemController.ActiveWeaponSystem.AmmoCount.ToString();
+            AmmoCountLabel.text = targetCar.WeaponController.CurWeapon.AmmoCount.ToString();
 
-            if (targetCar.WeaponSystemController.ActiveWeaponSystem.WeaponType == WeaponTypeEnum.Standard)
+            if (targetCar.WeaponController.CurWeapon.WeaponType == WeaponTypeEnum.Standard)
                 AmmoCountLabel.text = "N/A";
         }
     }

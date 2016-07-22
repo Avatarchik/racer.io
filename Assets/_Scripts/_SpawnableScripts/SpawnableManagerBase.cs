@@ -71,6 +71,8 @@ public class SpawnableManagerBase : MonoBehaviour
 
     protected virtual IEnumerator CheckSpawnProgress()
     {
+        _canSpawnSpawnable = true;
+        
         while (_canSpawnSpawnable)
         {
             SpawnSpawnable();

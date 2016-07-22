@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DailyQuest_StayAsKing : DailyQuestBase
 {
-    CarScript _targetCar;
+    CombatCarScript _targetCar;
 
     IEnumerator _stayAsKingRoutine;
 
@@ -11,7 +11,7 @@ public class DailyQuest_StayAsKing : DailyQuestBase
 
     public override void StartListeningEvents()
     {
-        _targetCar = CarManagerBase.BaseInstance.GetPlayerCarScript();
+        _targetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
 
         _targetCar.OnBecameKing += OnBecameKing;
         _targetCar.OnLostKing += OnLostKing;

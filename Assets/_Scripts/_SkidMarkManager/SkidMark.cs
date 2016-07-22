@@ -7,7 +7,7 @@ public class SkidMark : MonoBehaviour
 
     float _defaultTrailTime;
 
-    CarScript _parentCar;
+    CarBase _parentCar;
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class SkidMark : MonoBehaviour
         _defaultTrailTime = TrailRenderer.time;
     }
 
-    public void Activate(CarScript parentCar)
+    public void Activate(CarBase parentCar)
     {
         _parentCar = parentCar;
         
@@ -51,9 +51,8 @@ public class SkidMark : MonoBehaviour
             StartCoroutine(DeactivateRoutine());
     }
 
-    void OnCarKilled(CarScript other, DestroyReasonType reason)
+    void OnCarKilled(CarBase other, DestroyReasonType reason)
     {
-        Debug.Log("car killed");
         OnDriftActivated(false);
     }
 

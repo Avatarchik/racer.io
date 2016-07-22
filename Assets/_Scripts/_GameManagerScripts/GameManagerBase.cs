@@ -74,7 +74,6 @@ public class GameManagerBase : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        WeaponDropManager.Instance.FixedUpdateFrame();
         HealthManager.Instance.FixedUpdateFrame();
         CameraFollowScript.Instance.FixedUpdateFrame();
         LeaderboardController.Instance.FixedUpdateFrame();

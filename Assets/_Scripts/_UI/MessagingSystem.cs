@@ -28,7 +28,7 @@ public class MessagingSystem : MonoBehaviour
         ResetPlayerMessage();
     }
 
-    public void WriteKillMessage(CarScript destroyedCar, CarScript destroyerCar)
+    public void WriteKillMessage(CombatCarScript destroyedCar, CombatCarScript destroyerCar)
     {
         if (destroyedCar.IsPlayerCar)
             SendMessageToPlayer("Killed by" + destroyerCar.Username.text, Color.red);
@@ -38,7 +38,7 @@ public class MessagingSystem : MonoBehaviour
             WriteToGeneralMessage(destroyedCar.Username.text + " killed by " + destroyerCar.Username.text);
     }
 
-    public void WriteLeaveMessage(CarScript targetCar)
+    public void WriteLeaveMessage(CarBase targetCar)
     {
         if (targetCar.EnteredAbandonArea)
             SendMessageToPlayer("Area Abandoned", Color.red);

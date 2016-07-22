@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class SinglePlayerArenaCarManager : CarManagerBase
+public class SinglePlayerArenaCarManager : CombatCarManagerBase
 {
     static SinglePlayerArenaCarManager _instance;
 
@@ -45,7 +45,7 @@ public class SinglePlayerArenaCarManager : CarManagerBase
 
     void AssignCarToMyPlayer()
     {
-        CarScript myCar = AssignCarToPlayer(MY_PLAYER_ID, CarControllerType.Player);
+        CombatCarScript myCar = AssignCarToPlayer(MY_PLAYER_ID, CarControllerType.Player);
 
         if (myCar == null)
             return;
@@ -66,7 +66,7 @@ public class SinglePlayerArenaCarManager : CarManagerBase
         {
             string playerID = i.ToString() + "_AI";
             
-            CarScript plane = AssignCarToPlayer(playerID, CarControllerType.NPC);
+            CombatCarScript plane = AssignCarToPlayer(playerID, CarControllerType.NPC);
            
             AssignRandomNameToAICar(plane);
 
@@ -76,19 +76,19 @@ public class SinglePlayerArenaCarManager : CarManagerBase
         }
     }
 
-    void AssignRandomCarTypeToAICar(CarScript plane)
+    void AssignRandomCarTypeToAICar(CombatCarScript plane)
     {
         var result = CarSelectionWindowController.Instance.GetRandomCarAndColor();
 
         plane.SetCarTypeInfo(result.Key, result.Value);
     }
 
-    void AssignRandomNameToAICar(CarScript plane)
+    void AssignRandomNameToAICar(CombatCarScript plane)
     {
         plane.Username.text = SinglePlayerArenaGameManager.Instance.GetRandomName();
     }
 
-    void AssignRandomScoreToAICar(CarScript plane)
+    void AssignRandomScoreToAICar(CombatCarScript plane)
     {
         int randomScore = Utilities.NextInt(0, 500);
         plane.Score = randomScore;
@@ -105,10 +105,8 @@ public class SinglePlayerArenaCarManager : CarManagerBase
     {
         int aiCount = _activeCarDict.Values.Where(p => !p.IsPlayerCar).Count();
 
-
         if (aiCount < MaxAICarInGame && Time.realtimeSinceStartup - _lastSpawnTime >= _nextWaitTimeForSpawn)
         { 
-
             if (!_deactiveCarDict.Any(val => val.Value.ControllerType == CarControllerType.NPC))
                 return;
 
@@ -116,25 +114,25 @@ public class SinglePlayerArenaCarManager : CarManagerBase
 
             _nextWaitTimeForSpawn = Utilities.NextFloat(MinWaitTimeForSpawn, MaxWaitTimeForSpawn);
 
-            CarScript targetCar = _deactiveCarDict.First(val => val.Value.ControllerType == CarControllerType.NPC).Value;
+            CombatCarScript targetCar = _deactiveCarDict.First(val => val.Value.ControllerType == CarControllerType.NPC).Value;
 
             ActivateAICar(targetCar, true, false);
         }
     }
 
-    public void ActivateAICar(CarScript plane, bool isInGhostMode, bool isRandomHealth)
+    public void ActivateAICar(CombatCarScript car, bool isInGhostMode, bool isRandomHealth)
     {
-        AssignRandomCarTypeToAICar(plane);
+        AssignRandomCarTypeToAICar(car);
         
         Vector2 spawnPos = GameArea.Instance.GetRandomPosInGameArea();
 
-        plane.SetInitPosition(spawnPos);
+        car.SetInitPosition(spawnPos);
 
-        plane.SetInitHealth(isRandomHealth);
+        car.SetInitHealth(isRandomHealth);
 
-        ActivateCar(plane.PlayerID, isInGhostMode);
+        ActivateCar(car.PlayerID, isInGhostMode);
 
-        plane.CarAI.ActivateAI();
+        car.CarAI.ActivateAI();
 
     }
 }

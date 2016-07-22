@@ -3,11 +3,11 @@ using System.Collections;
 
 public class DailyQuest_DoStrike : DailyQuestBase
 {
-    CarScript _targetCar;
+    CombatCarScript _targetCar;
 
     public override void StartListeningEvents()
     {
-        _targetCar = CarManagerBase.BaseInstance.GetPlayerCarScript();
+        _targetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
 
         _targetCar.OnDidStrike += OnDidStrike;
     }

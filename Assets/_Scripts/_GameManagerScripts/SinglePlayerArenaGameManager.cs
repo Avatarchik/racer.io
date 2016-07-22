@@ -40,7 +40,7 @@ public class SinglePlayerArenaGameManager : GameManagerBase
 
     public override void EnterGame()
     {
-        CarManagerBase.BaseInstance.ActivateMyCar();
+        CombatCarManagerBase.BaseInstance.ActivateMyCar();
 
         base.EnterGame();
     }
@@ -58,6 +58,7 @@ public class SinglePlayerArenaGameManager : GameManagerBase
 
     protected override void FixedUpdate()
     {
+        GeneralCarManager.Instance.FixedUpdateFrame();
         SinglePlayerArenaCarManager.Instance.FixedUpdateFrame();
         
         base.FixedUpdate();

@@ -42,7 +42,7 @@ public class SkidMarkManager : MonoBehaviour
         }
     }
 
-    public void StartedDrifting(CarScript car)
+    public void StartedDrifting(CarBase car)
     {
         if (_deactiveSkidMarkList.Count == 0)
             return;

@@ -13,23 +13,23 @@ public class LeaderboardController : MonoBehaviour
     public LeaderboardContainer PlayerContainer;
     public List<LeaderboardContainer> LeaderboardContainerList;
 
-    List<CarScript> _leaderboardList;
+    List<CombatCarScript> _leaderboardList;
 
     void Awake()
     {
         _instance = this;
 
-        _leaderboardList = new List<CarScript>();
+        _leaderboardList = new List<CombatCarScript>();
 
         PlayerContainer.gameObject.SetActive(false);
     }
 
     public void FixedUpdateFrame()
     {
-        List<CarScript> activeCarList = CarManagerBase.BaseInstance.ActiveCarDict.Values.ToList();
+        List<CombatCarScript> activeCarList = CombatCarManagerBase.BaseInstance.ActiveCarDict.Values.ToList();
         
         _leaderboardList = activeCarList.OrderByDescending(p => p.Score).ToList();
-        CarScript player = _leaderboardList.Find(p => p.IsPlayerCar);
+        CombatCarScript player = _leaderboardList.Find(p => p.IsPlayerCar);
 
         UpdateLeaderboard();
 
@@ -48,7 +48,7 @@ public class LeaderboardController : MonoBehaviour
     {
         for (int i = 0; i < LeaderboardContainerList.Count; i++)
         {
-            CarScript targetCar = null;
+            CombatCarScript targetCar = null;
 
             if (i < _leaderboardList.Count)
                 targetCar = _leaderboardList[i];
@@ -57,7 +57,7 @@ public class LeaderboardController : MonoBehaviour
         }
     }
 
-    public int GetLeaderboardRank(CarScript car)
+    public int GetLeaderboardRank(CombatCarScript car)
     {
         if (!_leaderboardList.Contains(car))
             return -1;

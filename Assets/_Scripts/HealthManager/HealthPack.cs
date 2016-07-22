@@ -10,7 +10,7 @@ public class HealthPack : MonoBehaviour
     public bool IsTakenByPlayer;
 
     bool _isCollected;
-    CarScript _collectedPlane;
+    CombatCarScript _collectedPlane;
 
     public void Deactivate()
     {
@@ -44,7 +44,7 @@ public class HealthPack : MonoBehaviour
         if (_isCollected)
             return;
         
-        _collectedPlane = other.transform.parent.GetComponent<CarScript>();
+        _collectedPlane = other.transform.parent.GetComponent<CombatCarScript>();
 
         _isCollected = true;
 

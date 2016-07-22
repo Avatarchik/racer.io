@@ -8,7 +8,7 @@ public class PlayerInGameStatController : MonoBehaviour
 
     public static PlayerInGameStatController Instance { get { return _instance; } }
 
-    CarScript _targetCar;
+    CombatCarScript _targetCar;
 
     int _destroyedCarCount;
     int _collectedHealthPackCount;
@@ -43,7 +43,7 @@ public class PlayerInGameStatController : MonoBehaviour
     {
         ResetStats();
 
-        _targetCar = CarManagerBase.BaseInstance.GetPlayerCarScript();
+        _targetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
 
         _targetCar.OnDestroyedCar += OnDestroyedCar;
         _targetCar.OnCollectedHealthPack += OnCollectedHealthPack;
@@ -74,7 +74,7 @@ public class PlayerInGameStatController : MonoBehaviour
         _totalStrikeCount = 0;
     }
 
-    void OnDestroyedCar(CarScript p, DestroyReasonType r)
+    void OnDestroyedCar(CarBase p, DestroyReasonType r)
     {
         _destroyedCarCount++;
     }

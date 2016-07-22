@@ -7,9 +7,9 @@ public class LeaderboardContainer : MonoBehaviour
     public Image CrownImage;
     public Text Rank, Username, Score;
 
-    CarScript _car;
+    CombatCarScript _car;
 
-    public void Set(CarScript targetCar)
+    public void Set(CombatCarScript targetCar)
     {
         Color targetColor = Color.white;
 
@@ -45,7 +45,7 @@ public class LeaderboardContainer : MonoBehaviour
         Rank.color = targetColor;
     }
 
-    public void Set(CarScript targetCar, int rank)
+    public void Set(CombatCarScript targetCar, int rank)
     {
         Rank.text = rank.ToString();
 
