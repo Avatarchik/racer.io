@@ -46,9 +46,14 @@ public class PlayerInputController : MonoBehaviour
 
     void CheckInput()
     {
-        MyCar.WeaponController.Fire();
-        
+        CheckFire();
         CheckDefaultMovement();
+    }
+
+    void CheckFire()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            MyCar.WeaponController.Fire();
     }
 
     void CheckDefaultMovement()
