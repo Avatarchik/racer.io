@@ -19,12 +19,18 @@ public class Weapon_AmmoBased : WeaponBase
     protected List<AmmoBase> _deactiveAmmoList;
     protected List<AmmoBase> _activeAmmoList;
 
+    void Awake()
+    {
+        InitWeapon();
+    }
+
     public override void InitWeapon()
     {
         base.InitWeapon();
 
         InitLists();
         GenerateAmmos();
+        DeactivateWeapon();
     }
 
     void InitLists()
@@ -38,8 +44,6 @@ public class Weapon_AmmoBased : WeaponBase
         for (int i = 0; i < MaxAmmoInGame; i++)
         {
             GameObject tempAmmo = GameObject.Instantiate(AmmoPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-
-            tempAmmo.transform.parent = AmmoCarrier;
 
             AmmoBase ammo = tempAmmo.GetComponent<AmmoBase>();
 

@@ -20,6 +20,8 @@ public class AmmoBase : MonoBehaviour
     public void InitAmmo(Weapon_AmmoBased parentWeapon)
     {
         _parentWeapon = parentWeapon;
+
+        Deactivate();
     }
 
     public virtual void Activate(Transform ammoSlot)
