@@ -10,7 +10,7 @@ public class HealthPack : MonoBehaviour
     public bool IsTakenByPlayer;
 
     bool _isCollected;
-    CombatCarScript _collectedPlane;
+    CarBase _collectedCar;
 
     public void Deactivate()
     {
@@ -22,7 +22,7 @@ public class HealthPack : MonoBehaviour
     public void Activate(Vector2 spawnPos)
     {
         _isCollected = false;
-        _collectedPlane = null;
+        _collectedCar = null;
         
         IsTakenByPlayer = false;
 
@@ -44,7 +44,7 @@ public class HealthPack : MonoBehaviour
         if (_isCollected)
             return;
         
-        _collectedPlane = other.transform.parent.GetComponent<CombatCarScript>();
+        _collectedCar = other.transform.parent.GetComponent<CarBase>();
 
         _isCollected = true;
 
@@ -55,14 +55,14 @@ public class HealthPack : MonoBehaviour
     {
         Vector2 velocity = Vector2.zero;
         
-        while(Vector2.Distance(transform.position, _collectedPlane.transform.position) > 2f)
+        while(Vector2.Distance(transform.position, _collectedCar.transform.position) > 2f)
         {
-            transform.position = Vector2.SmoothDamp(transform.position, _collectedPlane.transform.position, ref velocity, DampTime);
+            transform.position = Vector2.SmoothDamp(transform.position, _collectedCar.transform.position, ref velocity, DampTime);
             
             yield return new WaitForFixedUpdate();
         }
 
-        _collectedPlane.CollectedHealthPack(HealthAmount);
+        _collectedCar.CollectedHealthPack(HealthAmount);
 
         
         IsTakenByPlayer = true;

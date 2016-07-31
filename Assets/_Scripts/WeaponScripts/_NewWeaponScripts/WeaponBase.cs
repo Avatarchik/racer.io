@@ -7,9 +7,12 @@ public abstract class WeaponBase : MonoBehaviour
     
     public WeaponTypeEnum WeaponType;
 
-    public int WeaponDamage;
+    protected int _weaponDamage;
+    public int WeaponDamage { get { return _weaponDamage; } }
 
-    public float WeaponCooldown;
+    protected float _weaponCooldown;
+    public float WeaponCooldown { get { return _weaponCooldown; } }
+
     protected bool _isInCooldown;
 
     protected int _ammoCount;
@@ -18,8 +21,10 @@ public abstract class WeaponBase : MonoBehaviour
 
     public virtual void InitWeapon()
     {
-        
+        InitWeaponInfo();
     }
+
+    protected abstract void InitWeaponInfo();
 
     public virtual void ActivateWeapon(int ammoCount)
     {
@@ -37,10 +42,13 @@ public abstract class WeaponBase : MonoBehaviour
 
     public void FireWeapon()
     {
-        if (_isInCooldown)
+        if (_isInCooldown
+            || WeaponController.MyCar.IsInGhostMode)
             return;
-        
+
         Fire();
+
+        CheckRemAmmo();
 
         StartCoroutine(CooldownProgress());
     }
@@ -57,7 +65,7 @@ public abstract class WeaponBase : MonoBehaviour
     {
         _isInCooldown = true;
         
-        yield return new WaitForSeconds(WeaponCooldown);
+        yield return new WaitForSeconds(_weaponCooldown);
 
         _isInCooldown = false;
     }

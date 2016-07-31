@@ -26,10 +26,12 @@ public class AmmoBase : MonoBehaviour
 
     public virtual void Activate(Transform ammoSlot)
     {
+        _hitCar = false;
+
         transform.parent = null;
         
         transform.position = ammoSlot.position;
-        transform.localEulerAngles = ammoSlot.localEulerAngles;
+        transform.eulerAngles = ammoSlot.eulerAngles;
 
         SetRendererActive(true);
 
@@ -47,16 +49,21 @@ public class AmmoBase : MonoBehaviour
         StartCoroutine(_moveRoutine);
     }
 
+    IEnumerator SetTrail()
+    {
+        float trailTime = TrailRenderer.time;
+        TrailRenderer.time = 0f;
+
+        yield return new WaitForSeconds(0.03f);
+
+        TrailRenderer.time = trailTime;
+    }
+
     protected virtual IEnumerator MoveProgress()
     {
         AmmoSound.Play();
 
-        float trailTime = TrailRenderer.time;
-        TrailRenderer.time = 0f;
-
-        yield return new WaitForFixedUpdate();
-
-        TrailRenderer.time = trailTime;
+        StartCoroutine(SetTrail());
 
         float distanceTaken = 0;
 

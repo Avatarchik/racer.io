@@ -78,6 +78,12 @@ public class GeneralCarManager : MonoBehaviour
         }
     }
 
+
+    public CarBase GetRandomActiveCar()
+    {
+        return _activeCarBaseList[Utilities.NextInt(0, _activeCarBaseList.Count)];
+    }
+
     public bool CheckEnteredAbondonArea(CarBase car)
     {
         return (!GameArea.Instance.IsInAbandonArea(car.transform.position)

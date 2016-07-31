@@ -90,7 +90,7 @@ public class CarAIBase : MonoBehaviour
 
         List<CarBase> carList = GeneralCarManager.Instance.ActiveCarBaseList;
 
-        foreach (CombatCarScript car in carList)
+        foreach (CarBase car in carList)
         {
             if (car == MyCar)
                 continue;
@@ -106,7 +106,7 @@ public class CarAIBase : MonoBehaviour
 
         List<CarBase> carList = GeneralCarManager.Instance.ActiveCarBaseList;
 
-        foreach (CombatCarScript car in carList)
+        foreach (CarBase car in carList)
         {
             if (car == MyCar)
                 continue;

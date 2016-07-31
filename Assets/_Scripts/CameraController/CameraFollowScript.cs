@@ -13,7 +13,7 @@ public class CameraFollowScript : MonoBehaviour
     public Rigidbody2D Rigidbody;
 
     [HideInInspector]
-    public CombatCarScript TargetCar;
+    public CarBase TargetCar;
 
     public float DampTime;
 
@@ -50,13 +50,13 @@ public class CameraFollowScript : MonoBehaviour
         else
         {
             if (TargetCar == null)
-                TargetCar = CombatCarManagerBase.BaseInstance.GetRandomActiveCarScript();
+                TargetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
             
             if (Input.GetKeyUp(KeyCode.Mouse0))
-                TargetCar = CombatCarManagerBase.BaseInstance.GetRandomActiveCarScript();
+                TargetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
 
             if (TargetCar.CurHealth <= 0)
-                TargetCar = CombatCarManagerBase.BaseInstance.GetRandomActiveCarScript();
+                TargetCar = CombatCarManagerBase.BaseInstance.GetPlayerCarScript();
         }
     }
 

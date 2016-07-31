@@ -26,6 +26,8 @@ public class CoinCarManager : MonoBehaviour
     public void StartSpawnProgress()
     {
         _canSpawnCoinCar = true;
+
+        SpawnCoinCar();
     }
 
     public void StopSpawnProgress()
@@ -35,6 +37,7 @@ public class CoinCarManager : MonoBehaviour
 
     void SpawnCoinCar()
     {
+        Debug.Log("spawn coin car");
         Vector2 spawnPos = GameArea.Instance.GetRandomPosInGameArea();
 
         CoinCar.SetInitPosition(spawnPos);

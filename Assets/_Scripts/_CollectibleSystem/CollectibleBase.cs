@@ -5,6 +5,7 @@ using System;
 public enum CollectibleTypeEnum
 {
     Coin,
+    WeaponBox,
 }
 
 public abstract class CollectibleBase : SpawnableBase

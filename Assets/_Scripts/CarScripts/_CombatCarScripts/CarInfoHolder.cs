@@ -4,7 +4,7 @@ using System.Collections;
 public class CarInfoHolder : MonoBehaviour
 {
     public tk2dSprite HealthBar;
-    public CombatCarScript Car;
+    public CarBase Car;
 
     public Color FullHealthColor, EmptyHealthColor;
 
@@ -23,10 +23,11 @@ public class CarInfoHolder : MonoBehaviour
 
         float coef = 1f;
         
-        if (!Car.IsKing)
-            coef = curHealth / Car.InitHealth;
-        else
+        if (Car.CarBaseType == CarBaseType.CombatCar && ((CombatCarScript)Car).IsKing)
             coef = curHealth / (Car.InitHealth * 2);
+        else
+            coef = curHealth / Car.InitHealth;
+
 
         HealthBar.transform.localScale = new Vector3(coef * _initScale, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
 

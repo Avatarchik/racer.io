@@ -83,7 +83,7 @@ public class SpawnableManagerBase : MonoBehaviour
         }
     }
 
-    protected void SpawnSpawnable()
+    protected virtual void SpawnSpawnable()
     {
         if (_deactiveSpawnableList.Count == 0)
             return;
@@ -98,12 +98,12 @@ public class SpawnableManagerBase : MonoBehaviour
 
     }
 
-    Vector3 GetSpawnPos()
+    protected Vector3 GetSpawnPos()
     {
         return GameArea.Instance.GetRandomPosInGameArea();
     }
 
-    void AddToActiveList(SpawnableBase spawnable)
+    protected void AddToActiveList(SpawnableBase spawnable)
     {
         _deactiveSpawnableList.Remove(spawnable);
 

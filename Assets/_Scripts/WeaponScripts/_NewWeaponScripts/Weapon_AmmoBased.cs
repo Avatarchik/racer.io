@@ -12,9 +12,13 @@ public class Weapon_AmmoBased : WeaponBase
     public int AmmoCount;
     public int MaxAmmoInGame;
 
-    public float AmmoSpeed;
+    float _ammoSpeed;
 
-    public float WeaponRange;
+    public float AmmoSpeed { get { return _ammoSpeed; } }
+
+    float _weaponRange;
+
+    public float WeaponRange { get { return _weaponRange; } }
 
     protected List<AmmoBase> _deactiveAmmoList;
     protected List<AmmoBase> _activeAmmoList;
@@ -31,6 +35,17 @@ public class Weapon_AmmoBased : WeaponBase
         InitLists();
         GenerateAmmos();
         DeactivateWeapon();
+    }
+
+    protected override void InitWeaponInfo()
+    {
+        Weapon_AmmoBasedInfo wi = WeaponInfoContoller.Instance.GetWeaponAmmoBasedInfo(WeaponType);
+
+        _weaponDamage = wi.WeaponDamage;
+        _weaponCooldown = wi.WeaponCooldown;
+        _ammoCount = wi.InitAmmoCount;
+        _ammoSpeed = wi.AmmoSpeed;
+        _weaponRange = wi.WeaponRange;
     }
 
     void InitLists()
@@ -60,7 +75,7 @@ public class Weapon_AmmoBased : WeaponBase
     protected override void CheckRemAmmo()
     {
         if (_ammoCount <= 0
-            || WeaponType != WeaponTypeEnum.Standard)
+            && WeaponType != WeaponTypeEnum.Standard)
             WeaponController.SetNewWeapon(WeaponTypeEnum.Standard, 0);
     }
 

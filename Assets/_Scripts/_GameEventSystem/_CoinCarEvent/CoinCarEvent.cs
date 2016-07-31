@@ -5,15 +5,16 @@ public class CoinCarEvent : GameEventBase
 {
     protected override void StartEvent()
     {
+        Debug.Log("start event");
         base.StartEvent();
 
-        //CoinTreasureManager.Instance.StartSpawnProgress();
+        CoinCarManager.Instance.StartSpawnProgress();
     }
 
     protected override void EndEvent()
     {
         base.EndEvent();
 
-        //CoinTreasureManager.Instance.StopSpawnProgress();
+        CoinCarManager.Instance.StopSpawnProgress();
     }
 }

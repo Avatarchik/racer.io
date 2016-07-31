@@ -3,8 +3,8 @@ using System.Collections;
 
 public enum WeaponTypeEnum
 {
-    Standard = 0,
+    None = -1,
+    Standard,
     Shotgun,
     Missile,
-    None,
 }
