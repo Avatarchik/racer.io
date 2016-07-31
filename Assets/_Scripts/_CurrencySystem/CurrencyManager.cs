@@ -6,7 +6,6 @@ public enum CurrencyType
     Coin,
 }
 
-
 public class CurrencyManager : MonoBehaviour 
 {
     static CurrencyManager _instance;
@@ -28,7 +27,6 @@ public class CurrencyManager : MonoBehaviour
         {
             case CurrencyType.Coin:
                 return (CoinCurrencyManager.Instance.CanAffordCoinCost(currencyAmount));
-
         }
 
         return false;

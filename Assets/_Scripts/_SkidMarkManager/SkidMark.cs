@@ -48,7 +48,18 @@ public class SkidMark : MonoBehaviour
     void OnDriftActivated(bool isActive)
     {
         if (!isActive)
-            StartCoroutine(DeactivateRoutine());
+        {
+            if (gameObject.activeSelf)
+                StartCoroutine(DeactivateRoutine());
+            else
+            {
+                _parentCar = null;
+
+                transform.parent = SkidMarkManager.Instance.transform;
+
+                Deactivate();
+            }
+        }
     }
 
     void OnCarKilled(CarBase other, DestroyReasonType reason)

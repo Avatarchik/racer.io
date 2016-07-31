@@ -5,7 +5,6 @@ public class CoinCarEvent : GameEventBase
 {
     protected override void StartEvent()
     {
-        Debug.Log("start event");
         base.StartEvent();
 
         CoinCarManager.Instance.StartSpawnProgress();

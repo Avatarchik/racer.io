@@ -32,7 +32,7 @@ public class InGameUIAmmoContainer : MonoBehaviour
 
         if (GameManagerBase.BaseInstance.IsInWatchMode)
         {
-            targetCar = CameraFollowScript.Instance.TargetCar;
+            targetCar = (CombatCarScript)CameraFollowScript.Instance.TargetCar;
 
             if (targetCar != null)
                 ChangeWeaponIcon(targetCar.WeaponController.CurWeapon.WeaponType);

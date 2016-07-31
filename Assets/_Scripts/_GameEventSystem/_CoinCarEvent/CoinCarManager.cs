@@ -13,6 +13,8 @@ public class CoinCarManager : MonoBehaviour
 
     bool _canSpawnCoinCar;
 
+    public int CoinRewardAmount;
+
     void Awake()
     {
         _instance = this;

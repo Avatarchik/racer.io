@@ -215,7 +215,7 @@ public class CombatCarScript : CarBase
 
             if (otherCar.CarBaseType == CarBaseType.CoinCar)
             {
-                //TODO: Give coin to player
+                CurrencyManager.Instance.GainCurrency(CurrencyType.Coin, CoinCarManager.Instance.CoinRewardAmount);
             }
         }
     }
