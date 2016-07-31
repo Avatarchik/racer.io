@@ -64,22 +64,22 @@ public class CarInfoText : MonoBehaviour
         switch (pte)
         {
             case CarTypeEnum.Buggy:
-                UIInfoText.text = Constants.Phantom_Unlock_Text;
+                UIInfoText.text = Constants.Buggy_Unlock_Text;
                 break;
             case CarTypeEnum.Bulky:
-                UIInfoText.text = Constants.Mirage_Unlock_Text;
+                UIInfoText.text = Constants.Bulky_Unlock_Text;
                 break;
             case CarTypeEnum.Fury:
-                UIInfoText.text = Constants.StealthFighter_Unlock_Text;
+                UIInfoText.text = Constants.Fury_Unlock_Text;
                 break;
             case CarTypeEnum.MrGrim:
-                UIInfoText.text = Constants.XWingPrime_Unlock_Text;
+                UIInfoText.text = Constants.MrGrim_Unlock_Text;
                 break;
             case CarTypeEnum.Speedy:
-                UIInfoText.text = Constants.Curtiss_Unlock_Text;
+                UIInfoText.text = Constants.Speedy_Unlock_Text;
                 break;
             case CarTypeEnum.Spark:
-                UIInfoText.text = Constants.Baron_Unlock_Text;
+                UIInfoText.text = Constants.Spark_Unlock_Text;
                 break;
             default:
                 SetDefault();

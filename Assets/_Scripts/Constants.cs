@@ -4,23 +4,23 @@ using System.Collections;
 public static class Constants
 {
 
-    public const int Phantom_Unlock_Level = 5;
+    public const int Buggy_Unlock_Level = 5;
 
-    public const int Curtiss_Unlock_Level = 10;
+    public const int Speedy_Unlock_Level = 10;
 
-    public const int Baron_Unlock_Level = 15;
+    public const int Spark_Unlock_Level = 15;
 
-    public static string Phantom_Unlock_Text = "Reach level " + Phantom_Unlock_Level + " to unlock Phantom";
+    public static string Buggy_Unlock_Text = "Reach level " + Buggy_Unlock_Level + " to unlock Buggy";
 
-    public static string Curtiss_Unlock_Text = "Reach level " + Curtiss_Unlock_Level + " to unlock Curtiss";
+    public static string Speedy_Unlock_Text = "Reach level " + Speedy_Unlock_Level + " to unlock Speedy";
 
-    public static string Baron_Unlock_Text = "Reach level " + Baron_Unlock_Level + " to unlock Baron";
+    public static string Spark_Unlock_Text = "Reach level " + Spark_Unlock_Level + " to unlock Spark";
 
-    public const string Mirage_Unlock_Text = "Share your score on Facebook to unlock Mirage";
+    public const string Bulky_Unlock_Text = "Share your score on Facebook to unlock Bulky";
 
-    public const string StealthFighter_Unlock_Text = "Kill 160 planes (Mega Killer achievement) to unlock Rogue";
+    public const string Fury_Unlock_Text = "Kill 160 planes (Mega Killer achievement) to unlock Fury";
 
-    public const string XWingPrime_Unlock_Text = "You can buy X-Wing Prime by pressing cart button below";
+    public const string MrGrim_Unlock_Text = "You can buy MrGrim by pressing cart button below";
 
     public const string XWing_Product_ID = "com.lastchance.xwing";
 
