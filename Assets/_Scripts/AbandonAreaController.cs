@@ -5,7 +5,8 @@ public enum AbandonSide
 {
     Left,
     Right,
-    Top
+    Top,
+    Bottom
 }
 
 public class AbandonAreaController : MonoBehaviour
@@ -35,6 +36,10 @@ public class AbandonAreaController : MonoBehaviour
                     break;
                 case AbandonSide.Top:
                     if (playerCar.position.y > StartingPoint.position.y && playerCar.position.y < EndPoint.position.y)
+                        AlphaAmount = (playerCar.position.y - StartingPoint.position.y) / (EndPoint.position.y - StartingPoint.position.y);
+                    break;
+                case AbandonSide.Bottom:
+                    if (playerCar.position.y < StartingPoint.position.y && playerCar.position.y > EndPoint.position.y)
                         AlphaAmount = (playerCar.position.y - StartingPoint.position.y) / (EndPoint.position.y - StartingPoint.position.y);
                     break;
                 default:

@@ -10,10 +10,10 @@ public class UIController : MonoBehaviour
     public static UIController Instance { get { return _instance; } }
 
     public Transform NewGameUI, CarSelectionUI, EventsUI, InGameUI, WatchModeUI, JoystickUI, StrikeControllerUI, FadeLayerUI, EveryPlayRecUI;
+    //public Transform CameraButtonsInactiveTransform, CameraButtonsActiveTransform;
+    public MMTweenPosition EventsUITween, CarSelectUITween, CameraButtonsUITween;
 
-    public Transform EventsUIInactiveTransform, CarSelectUIInactiveTransform, CameraButtonsInactiveTransform, CameraButtonsActiveTransform;
-
-    public Ease TransitionEaseType;
+    //public Ease TransitionEaseType;
     public int PunchVibrato;
     public float PunchElasticity, PunchDuration;
     public Vector3 Punch;
@@ -87,24 +87,22 @@ public class UIController : MonoBehaviour
 
     public void ShowPlaneSelectionUI()
     {
-        CarSelectionUI.DOLocalMove(Vector3.zero, 0.2f, true).SetEase(TransitionEaseType);
-
-        EventsUI.DOLocalMove(EventsUIInactiveTransform.localPosition, 0.2f, true).SetEase(TransitionEaseType);
+        EventsUITween.PlayForward();
+        CarSelectUITween.PlayForward();
     }
 
     public void ShowEventsUI()
     {
-        EventsUI.DOLocalMove(Vector3.zero, 0.2f, true).SetEase(Ease.InCubic);
-
-        CarSelectionUI.DOLocalMove(CarSelectUIInactiveTransform.localPosition, 0.2f, true).SetEase(TransitionEaseType);
+        CarSelectUITween.PlayReverse();
+        EventsUITween.PlayReverse();
     }
 
     public void SetCameraButtons()
     {
         if (!_isEveryPlayButtonsActive)
-            EveryPlayRecUI.DOLocalMove(CameraButtonsActiveTransform.localPosition, 0.2f, true).SetEase(TransitionEaseType);
+            CameraButtonsUITween.PlayForward();
         else
-            EveryPlayRecUI.DOLocalMove(CameraButtonsInactiveTransform.localPosition, 0.2f, true).SetEase(TransitionEaseType);
+            CameraButtonsUITween.PlayReverse();
 
         _isEveryPlayButtonsActive = !_isEveryPlayButtonsActive;
     }
