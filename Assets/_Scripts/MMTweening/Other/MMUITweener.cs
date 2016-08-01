@@ -56,6 +56,8 @@ public abstract class MMUITweener : MonoBehaviour
 
     float _clampedValue, _curDuration, _enableTime;
     bool _firstEnable, _enabled;
+
+    public float CurDuration { get { return _curDuration; } }
     #endregion
 
     #region Events

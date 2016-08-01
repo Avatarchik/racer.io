@@ -122,6 +122,7 @@ public class UIController : MonoBehaviour
         FadeTween.AddOnFinish(ShowGiftScreen);
 
         GiftScreenUITween.AddOnFinish(FadeOutScreen);
+        GiftScreenUITween.AddOnUpdate(OpenGiftSelection);
     }
 
     public void HideGiftScreenUI()
@@ -177,6 +178,14 @@ public class UIController : MonoBehaviour
         FadeTween.gameObject.SetActive(true);
     }
 
+    void OpenGiftSelection()
+    {
+        if (GiftScreenUITween.CurDuration < GiftScreenUITween.Duration / 2f)
+            return;
+
+        GiftScreenUITween.RemoveOnUpdate(OpenGiftSelection);
+        RandomGiftMachineManager.Instance.OpenSelection();
+    }
 
     public void SetCameraButtons()
     {
