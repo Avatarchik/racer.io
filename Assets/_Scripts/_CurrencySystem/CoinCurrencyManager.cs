@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class CoinCurrencyManager : MonoBehaviour 
+public class CoinCurrencyManager : MonoBehaviour
 {
     static CoinCurrencyManager _instance;
 
     public static CoinCurrencyManager Instance { get { return _instance; } }
 
     int _curCoinAmount;
+
     public int CurCoinAmount { get { return _curCoinAmount; } }
 
     int _cachedCoinAmount;
+
     public int CachedCoinAmount { get { return _cachedCoinAmount; } }
 
     public const string COIN = "coin";
-
 
     void Awake()
     {
@@ -69,6 +71,7 @@ public class CoinCurrencyManager : MonoBehaviour
         {
             _curCoinAmount -= coinCost;
             _cachedCoinAmount = _curCoinAmount;
+
             SaveCoins();
 
             return true;
@@ -102,7 +105,7 @@ public class CoinCurrencyManager : MonoBehaviour
         _cachedCoinAmount += amount;
     }
 
-    public void CheckoutCachedStar()
+    public void CheckoutCachedCoin()
     {
         _curCoinAmount = _cachedCoinAmount;
 

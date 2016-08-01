@@ -24,6 +24,8 @@ public class CarAnimationControllerBase : MonoBehaviour
 
     public virtual void InitAnimationController()
     {
+        _curAnimEnum = CarAnimEnum.None;
+        
         _canChangeAnim = true;
 
         CarRenderer.enabled = true;

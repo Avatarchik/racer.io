@@ -23,6 +23,8 @@ public class CarWeaponControllerBase : MonoBehaviour
         _curWeapon = targetWeapon;
 
         _curWeapon.ActivateWeapon(ammoCount);
+
+        InGameUIAmmoContainer.Instance.ChangeWeaponIcon(_curWeapon.WeaponType);
     }
 
     public void Fire()

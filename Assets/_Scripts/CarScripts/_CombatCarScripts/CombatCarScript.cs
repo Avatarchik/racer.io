@@ -137,6 +137,9 @@ public class CombatCarScript : CarBase
 
         AddScore(-1 * (Score / 2), false);
 
+        if (IsPlayerCar)
+            InputController.DeactivateInputController();
+
         base.Deactivate();
     }
 

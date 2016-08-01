@@ -114,8 +114,10 @@ public class CarSelectionWindowController : MonoBehaviour
     public KeyValuePair<CarColorEnum, CarTypeEnum> GetRandomCarAndColor()
     {
         int randomColorIndex = Utilities.NextInt(0, Enum.GetNames(typeof(CarColorEnum)).Length - 1);
-
         int randomCarIndex = Utilities.NextInt(0, Enum.GetNames(typeof(CarTypeEnum)).Length - 1);
+
+        while (!PlayerProfile.Instance.CheckIfCarUnlocked((CarTypeEnum)randomCarIndex))
+            randomCarIndex = Utilities.NextInt(0, Enum.GetNames(typeof(CarTypeEnum)).Length - 1);
 
         return new KeyValuePair<CarColorEnum, CarTypeEnum>((CarColorEnum)randomColorIndex, (CarTypeEnum)randomCarIndex);
     }

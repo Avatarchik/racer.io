@@ -6,9 +6,10 @@ public enum CurrencyType
     Coin,
 }
 
-public class CurrencyManager : MonoBehaviour 
+public class CurrencyManager : MonoBehaviour
 {
     static CurrencyManager _instance;
+
     public static CurrencyManager Instance { get { return _instance; } }
 
     void Awake()
@@ -23,7 +24,7 @@ public class CurrencyManager : MonoBehaviour
 
     public bool CanAffordPrice(CurrencyType currencyType, int currencyAmount)
     {
-        switch(currencyType)
+        switch (currencyType)
         {
             case CurrencyType.Coin:
                 return (CoinCurrencyManager.Instance.CanAffordCoinCost(currencyAmount));
@@ -60,7 +61,7 @@ public class CurrencyManager : MonoBehaviour
         switch (currencyType)
         {
             case CurrencyType.Coin:
-                CoinCurrencyManager.Instance.CheckoutCachedStar();
+                CoinCurrencyManager.Instance.CheckoutCachedCoin();
                 break;
         }
     }

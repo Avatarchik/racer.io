@@ -65,6 +65,8 @@ public class UIController : MonoBehaviour
 
         EventsUI.gameObject.SetActive(true);
         EventsUI.DOPunchScale(Punch, PunchDuration, PunchVibrato, PunchElasticity);
+
+        CoinBarMainMenu.Instance.UpdateCoinBar();
     }
 
     public void ShowInGameUI()
@@ -95,6 +97,8 @@ public class UIController : MonoBehaviour
     {
         CarSelectUITween.PlayReverse();
         EventsUITween.PlayReverse();
+
+        CoinBarMainMenu.Instance.UpdateCoinBar();
     }
 
     public void SetCameraButtons()

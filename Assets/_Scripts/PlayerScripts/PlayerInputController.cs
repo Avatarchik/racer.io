@@ -17,12 +17,73 @@ public class PlayerInputController : MonoBehaviour
     IEnumerator _restrictInputRoutine;
 
     bool _isFireButtonPressed;
-
-    public bool IsFireButtonPressed{ get { return _isFireButtonPressed; } }
+    bool _isLeftButtonPressed;
+    bool _isRightButtonPressed;
 
     public void ActivateInputController()
     {
+        _isFireButtonPressed = false;
+        _isLeftButtonPressed = false;
+        _isRightButtonPressed = false;
+        
         _canGetInput = true;
+
+        StartListeningEvents();
+    }
+
+    public void DeactivateInputController()
+    {
+        FinishListeningEvents();
+    }
+
+    void StartListeningEvents()
+    {
+        InputHandler.OnFireButtonPressed += OnFireButtonPressed;
+        InputHandler.OnFireButtonReleased += OnFireButtonReleased;
+        InputHandler.OnLeftButtonPressed += OnLeftButtonPressed;
+        InputHandler.OnLeftButtonReleased += OnLeftButtonReleased;
+        InputHandler.OnRightButtonPressed += OnRightButtonPressed;
+        InputHandler.OnRightButtonReleased += OnRightButtonReleased;
+    }
+
+    void FinishListeningEvents()
+    {
+        InputHandler.OnFireButtonPressed -= OnFireButtonPressed;
+        InputHandler.OnFireButtonReleased -= OnFireButtonReleased;
+        InputHandler.OnLeftButtonPressed -= OnLeftButtonPressed;
+        InputHandler.OnLeftButtonReleased -= OnLeftButtonReleased;
+        InputHandler.OnRightButtonPressed -= OnRightButtonPressed;
+        InputHandler.OnRightButtonReleased -= OnRightButtonReleased;
+    }
+
+    void OnFireButtonPressed()
+    {
+        _isFireButtonPressed = true;
+    }
+
+    void OnFireButtonReleased()
+    {
+        _isFireButtonPressed = false;
+    }
+
+    void OnLeftButtonPressed()
+    {
+        _isLeftButtonPressed = true;
+    }
+
+    void OnLeftButtonReleased()
+    {
+        _isLeftButtonPressed = false;
+    }
+
+    void OnRightButtonPressed()
+    {
+        _isRightButtonPressed = true;
+    }
+
+    void OnRightButtonReleased()
+    {
+        _isRightButtonPressed = false;
     }
 
     public void SetInputDirection(Vector2 direction)
@@ -34,36 +95,53 @@ public class PlayerInputController : MonoBehaviour
     {
         if (MyCar.ControllerType == CarControllerType.NPC)
             return;
-
+        
         if (!_canGetInput)
             _inputDirection = Vector2.zero;
 
-        if (MyCar.IsPlayerCar && _canGetInput)
-            CheckInput();
+        #if UNITY_EDITOR
+        CheckKeyboard();
+        #endif
+
+        CheckSteering();
+        CheckFiring();
 
         ApplyInput();
     }
 
-    void CheckInput()
+
+    void CheckKeyboard()
     {
-        CheckFire();
-        CheckDefaultMovement();
+        if (Input.GetKeyDown(KeyCode.Space))
+            _isFireButtonPressed = true;
+        else if (Input.GetKeyUp(KeyCode.Space))
+            _isFireButtonPressed = false;
+
+        if (Input.GetKeyDown(KeyCode.A))
+            _isLeftButtonPressed = true;
+        else if (Input.GetKeyUp(KeyCode.A))
+            _isLeftButtonPressed = false;
+
+        if (Input.GetKeyDown(KeyCode.D))
+            _isRightButtonPressed = true;
+        else if (Input.GetKeyUp(KeyCode.D))
+            _isRightButtonPressed = false;
     }
 
-    void CheckFire()
+    void CheckSteering()
     {
-        if (Input.GetKey(KeyCode.Space))
-            MyCar.WeaponController.Fire();
-    }
-
-    void CheckDefaultMovement()
-    {
-        _inputDirection = Vector2.zero;
-        
-        if (Input.GetKey(KeyCode.A))
+        if (_isLeftButtonPressed)
             _inputDirection = new Vector2(-1, 0);
-        else if (Input.GetKey(KeyCode.D))
+        else if (_isRightButtonPressed)
             _inputDirection = new Vector2(1, 0);
+    }
+
+    void CheckFiring()
+    {
+        if (!_isFireButtonPressed)
+            return;
+
+        MyCar.WeaponController.Fire();
     }
 
     void ApplyInput()
@@ -76,6 +154,7 @@ public class PlayerInputController : MonoBehaviour
 
         MovementController.SeekByInput(_inputDirection);
 
+        _inputDirection = Vector2.zero;
     }
 
     Vector2 GetTargetPos()
@@ -99,5 +178,8 @@ public class PlayerInputController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         _canGetInput = true;
+
+        _isLeftButtonPressed = false;
+        _isRightButtonPressed = false;
     }
 }
