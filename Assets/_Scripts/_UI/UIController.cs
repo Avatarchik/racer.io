@@ -10,26 +10,36 @@ public class UIController : MonoBehaviour
     public static UIController Instance { get { return _instance; } }
 
     public Transform NewGameUI, CarSelectionUI, EventsUI, InGameUI, WatchModeUI, JoystickUI, StrikeControllerUI, FadeLayerUI, EveryPlayRecUI;
-    //public Transform CameraButtonsInactiveTransform, CameraButtonsActiveTransform;
-    public MMTweenPosition EventsUITween, CarSelectUITween, CameraButtonsUITween;
+    public MMTweenPosition EventsUITween, CarSelectUITween, GiftScreenUITween, CameraButtonsUITween;
 
-    //public Ease TransitionEaseType;
+    public MMTweenAlpha FadeTween;
+
     public int PunchVibrato;
     public float PunchElasticity, PunchDuration;
     public Vector3 Punch;
 
-    bool _isEveryPlayButtonsActive;
+    bool _isEveryPlayButtonsActive, _isGiftScreenActive;
 
     void Awake()
     {
         _instance = this;
 
         _isEveryPlayButtonsActive = false;
+        _isGiftScreenActive = false;
     }
 
     void OnDestroy()
     {
         _instance = null;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.G) && !_isGiftScreenActive)
+            ShowGiftScreenUI();
+
+        if (Input.GetKeyUp(KeyCode.H) && _isGiftScreenActive)
+            HideGiftScreenUI();
     }
 
     public void ShowWatchModeUI()
@@ -100,6 +110,73 @@ public class UIController : MonoBehaviour
 
         CoinBarMainMenu.Instance.UpdateCoinBar();
     }
+
+    public void ShowGiftScreenUI()
+    {
+        _isGiftScreenActive = true;
+
+        ActivateFadeObj();
+
+        FadeInScreen();
+
+        FadeTween.AddOnFinish(ShowGiftScreen);
+
+        GiftScreenUITween.AddOnFinish(FadeOutScreen);
+    }
+
+    public void HideGiftScreenUI()
+    {
+        _isGiftScreenActive = false;
+
+        ActivateFadeObj();
+
+        FadeInScreen();
+
+        FadeTween.AddOnFinish(HideGiftScreen);
+
+        GiftScreenUITween.AddOnFinish(FadeOutScreen);
+    }
+
+    void FadeInScreen()
+    {
+        FadeTween.PlayForward();
+    }
+
+    void FadeOutScreen()
+    {
+        GiftScreenUITween.RemoveOnFinish(FadeOutScreen);
+
+        FadeTween.PlayReverse();
+        FadeTween.AddOnFinish(DeactivateFadeObj);
+    }
+
+    void ShowGiftScreen()
+    {
+        FadeTween.RemoveOnFinish(ShowGiftScreen);
+
+        GiftScreenUITween.PlayForward();
+    }
+
+    void HideGiftScreen()
+    {
+        FadeTween.RemoveOnFinish(HideGiftScreen);
+
+        GiftScreenUITween.PlayReverse();
+    }
+
+    void DeactivateFadeObj()
+    {
+        FadeTween.RemoveOnFinish(DeactivateFadeObj);
+
+        FadeTween.gameObject.SetActive(false);
+    }
+    void ActivateFadeObj()
+    {
+        FadeTween.RemoveOnFinish(ActivateFadeObj);
+
+        FadeTween.gameObject.SetActive(true);
+    }
+
 
     public void SetCameraButtons()
     {

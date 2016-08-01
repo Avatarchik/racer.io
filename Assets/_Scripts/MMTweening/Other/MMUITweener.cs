@@ -64,44 +64,85 @@ public abstract class MMUITweener : MonoBehaviour
     TweenCallback onKill, onFinish, onStart, onUpdate, onPause, onResume;
 
     #region Callback Functions
-    public MMUITweener OnKill(TweenCallback callback)
+    public MMUITweener AddOnKill(TweenCallback callback)
     {
-        onKill = callback;
+        onKill += callback;
 
         return this;
     }
 
-    public MMUITweener OnFinish(TweenCallback callback)
+    public MMUITweener AddOnFinish(TweenCallback callback)
     {
-        onFinish = callback;
+        onFinish += callback;
 
         return this;
     }
 
-    public MMUITweener OnStart(TweenCallback callback)
+    public MMUITweener AddOnStart(TweenCallback callback)
     {
-        onStart = callback;
+        onStart += callback;
 
         return this;
     }
 
-    public MMUITweener OnUpdate(TweenCallback callback)
+    public MMUITweener AddOnUpdate(TweenCallback callback)
     {
-        onUpdate = callback;
+        onUpdate += callback;
 
         return this;
     }
 
-    public MMUITweener OnPause(TweenCallback callback)
+    public MMUITweener AddOnPause(TweenCallback callback)
     {
-        onPause = callback;
+        onPause += callback;
 
         return this;
     }
 
-    public MMUITweener OnResume(TweenCallback callback)
+    public MMUITweener AddOnResume(TweenCallback callback)
     {
-        onResume = callback;
+        onResume += callback;
+
+        return this;
+    }
+    public MMUITweener RemoveOnKill(TweenCallback callback)
+    {
+        onKill -= callback;
+
+        return this;
+    }
+
+    public MMUITweener RemoveOnFinish(TweenCallback callback)
+    {
+        onFinish -= callback;
+
+        return this;
+    }
+
+    public MMUITweener RemoveOnStart(TweenCallback callback)
+    {
+        onStart -= callback;
+
+        return this;
+    }
+
+    public MMUITweener RemoveOnUpdate(TweenCallback callback)
+    {
+        onUpdate -= callback;
+
+        return this;
+    }
+
+    public MMUITweener RemoveOnPause(TweenCallback callback)
+    {
+        onPause -= callback;
+
+        return this;
+    }
+
+    public MMUITweener RemoveOnResume(TweenCallback callback)
+    {
+        onResume -= callback;
 
         return this;
     } 
