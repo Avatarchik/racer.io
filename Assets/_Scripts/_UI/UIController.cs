@@ -33,15 +33,6 @@ public class UIController : MonoBehaviour
         _instance = null;
     }
 
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.G) && !_isGiftScreenActive)
-            ShowGiftScreenUI();
-
-        if (Input.GetKeyUp(KeyCode.H) && _isGiftScreenActive)
-            HideGiftScreenUI();
-    }
-
     public void ShowWatchModeUI()
     {
         NewGameUI.gameObject.SetActive(false);
@@ -113,6 +104,9 @@ public class UIController : MonoBehaviour
 
     public void ShowGiftScreenUI()
     {
+        if (_isGiftScreenActive)
+            return;
+
         _isGiftScreenActive = true;
 
         ActivateFadeObj();
@@ -127,6 +121,9 @@ public class UIController : MonoBehaviour
 
     public void HideGiftScreenUI()
     {
+        if (!_isGiftScreenActive)
+            return;
+
         _isGiftScreenActive = false;
 
         ActivateFadeObj();

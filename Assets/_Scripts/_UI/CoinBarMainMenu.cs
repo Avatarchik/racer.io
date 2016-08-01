@@ -9,6 +9,7 @@ public class CoinBarMainMenu : MonoBehaviour
     public static CoinBarMainMenu Instance{ get { return _instance; } }
 
     public Text CoinText;
+    public MMTweenPosition GiftBoxButtonTween;
 
     void Awake()
     {
@@ -23,6 +24,16 @@ public class CoinBarMainMenu : MonoBehaviour
     public void UpdateCoinBar()
     {
         CoinText.text = CoinCurrencyManager.Instance.CurCoinAmount.ToString();
+
+        CanOpenGiftBox();
+    }
+
+    void CanOpenGiftBox()
+    {
+        if (CoinCurrencyManager.Instance.CurCoinAmount > 100)
+            GiftBoxButtonTween.PlayForward();
+        else
+            GiftBoxButtonTween.PlayReverse();
     }
 
 }
