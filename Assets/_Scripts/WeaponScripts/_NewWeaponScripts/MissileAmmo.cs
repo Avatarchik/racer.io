@@ -25,6 +25,8 @@ public class MissileAmmo : AmmoBase
 
         TrailRenderer.time = trailTime;
 
+        _velocity = transform.right * _parentWeapon.AmmoSpeed;
+
         float distanceTaken = 0;
         Vector2 prevPos = (Vector2)transform.position;
 
@@ -39,7 +41,6 @@ public class MissileAmmo : AmmoBase
 
             if (_targetCar == null)
                 CheckTargetCar();
-
 
             Seek(GetTargetPos(), 0);
             CalculateFinalVelocity();
@@ -61,9 +62,13 @@ public class MissileAmmo : AmmoBase
         Vector3 targetPos = transform.position;
 
         if (_targetCar == null)
+        {
             targetPos += (Vector3)_velocity.normalized * _parentWeapon.AmmoSpeed;
+        }
         else
+        {
             targetPos = _targetCar.transform.position;
+        }
 
         return targetPos;
     }

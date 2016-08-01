@@ -8,9 +8,11 @@ public abstract class WeaponBase : MonoBehaviour
     public WeaponTypeEnum WeaponType;
 
     protected int _weaponDamage;
+
     public int WeaponDamage { get { return _weaponDamage; } }
 
     protected float _weaponCooldown;
+
     public float WeaponCooldown { get { return _weaponCooldown; } }
 
     protected bool _isInCooldown;
@@ -50,7 +52,8 @@ public abstract class WeaponBase : MonoBehaviour
 
         CheckRemAmmo();
 
-        StartCoroutine(CooldownProgress());
+        if (gameObject.activeSelf)
+            StartCoroutine(CooldownProgress());
     }
 
     protected abstract void Fire();

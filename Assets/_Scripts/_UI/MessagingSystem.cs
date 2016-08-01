@@ -75,7 +75,8 @@ public class MessagingSystem : MonoBehaviour
 
         _messageRoutine = MessageRoutine(message, textColor);
 
-        StartCoroutine(_messageRoutine);
+        if (gameObject.activeSelf)
+            StartCoroutine(_messageRoutine);
     }
 
     IEnumerator MessageRoutine(string message, Color textColor)

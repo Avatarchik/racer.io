@@ -112,28 +112,31 @@ public class PlayerInputController : MonoBehaviour
 
     void CheckKeyboard()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
             _isFireButtonPressed = true;
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else
             _isFireButtonPressed = false;
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
             _isLeftButtonPressed = true;
-        else if (Input.GetKeyUp(KeyCode.A))
+        else
             _isLeftButtonPressed = false;
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
             _isRightButtonPressed = true;
-        else if (Input.GetKeyUp(KeyCode.D))
+        else
             _isRightButtonPressed = false;
     }
 
     void CheckSteering()
     {
+        _inputDirection = Vector2.zero;
+        
         if (_isLeftButtonPressed)
-            _inputDirection = new Vector2(-1, 0);
-        else if (_isRightButtonPressed)
-            _inputDirection = new Vector2(1, 0);
+            _inputDirection += new Vector3(-1, 0);
+        
+        if (_isRightButtonPressed)
+            _inputDirection += new Vector3(1, 0);
     }
 
     void CheckFiring()
@@ -154,7 +157,6 @@ public class PlayerInputController : MonoBehaviour
 
         MovementController.SeekByInput(_inputDirection);
 
-        _inputDirection = Vector2.zero;
     }
 
     Vector2 GetTargetPos()
